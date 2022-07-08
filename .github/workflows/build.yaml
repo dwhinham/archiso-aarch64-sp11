@@ -12,4 +12,4 @@ jobs:
       - name: build the ISO
         run: |
           whoami
-          sudo ./archiso/mkarchiso -v configs/releng
+          sudo -S ./archiso/mkarchiso -v configs/releng
