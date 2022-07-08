@@ -1,0 +1,14 @@
+name: run mkarchiso
+
+on:
+  workflow_dispatch: {}
+  
+jobs:
+  build:
+    runs-on: [self-hosted, linux, ARM64]
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: build the ISO
+        run: |
+          sudo ./archiso/mkarchiso -v configs/releng
