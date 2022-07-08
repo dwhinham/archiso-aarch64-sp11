@@ -12,4 +12,4 @@ jobs:
       - name: build the ISO
         run: |
           whoami
-          zsh $(sudo ./archiso/mkarchiso -v configs/releng)
+          echo ${{ secrets.SUDO_PASSWD }} | sudo -S ./archiso/mkarchiso -v configs/releng
