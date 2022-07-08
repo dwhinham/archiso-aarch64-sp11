@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: cleanup work dir
         run: | 
+          pwd
           [[ -d archiso-x13s/work ]] && echo {{ secrets.SUDO_PASSWD }} | sudo -S rm -rf archiso-x13s/work/
           [[ -d archiso-x13s/out ]] && echo {{ secrets.SUDO_PASSWD }} | sudo -S rm -rf archiso-x13s/out/
     
