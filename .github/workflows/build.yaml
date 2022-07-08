@@ -9,7 +9,6 @@ jobs:
     steps:
       - name: cleanup work dir
         run: | 
-          pwd
           [[ -d work ]] && echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf work/
           [[ -d out ]]  && echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf out/
     
