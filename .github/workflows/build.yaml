@@ -17,3 +17,8 @@ jobs:
       - name: build the ISO
         run: |
           echo ${{ secrets.SUDO_PASSWD }} | sudo -S ./archiso/mkarchiso -v configs/releng
+          
+      - name: deploy iso to static file server
+        run: |
+          echo ${{ secrets.SUDO_PASSWD }} | sudo -S chown -R alex:alex out/
+          scp out/* rockpro64:/srv/static/
