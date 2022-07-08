@@ -9,10 +9,12 @@ jobs:
     steps:
       - name: cleanup work dir
         run: | 
-          echo {{ secrets.SUDO_PASSWD }} | sudo rm -rf out/ work/
+          [[ -d archiso-x13s/work ]] && echo {{ secrets.SUDO_PASSWD }} | sudo -S rm -rf archiso-x13s/work/
+          [[ -d archiso-x13s/out ]] && echo {{ secrets.SUDO_PASSWD }} | sudo -S rm -rf archiso-x13s/out/
     
       - uses: actions/checkout@v3
       
       - name: build the ISO
         run: |
+          cd archiso-x13s
           echo ${{ secrets.SUDO_PASSWD }} | sudo -S ./archiso/mkarchiso -v configs/releng
