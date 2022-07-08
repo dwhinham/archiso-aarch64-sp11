@@ -11,5 +11,4 @@ jobs:
       
       - name: build the ISO
         run: |
-          whoami
           echo ${{ secrets.SUDO_PASSWD }} | sudo -S ./archiso/mkarchiso -v configs/releng
