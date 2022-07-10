@@ -24,6 +24,7 @@ jobs:
           
       - name: create local package repository
         run: |
+          pwd
           mkdir -p local/repo
           cp linux-x13s-*.tar.xz local/repo
           repo-add local/repo/custom.db.tar.gz linux-x13s-*.tar.xz
