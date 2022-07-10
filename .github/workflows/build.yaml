@@ -17,17 +17,18 @@ jobs:
           then
             echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf out/
           fi
-    
-      - uses: actions/checkout@v3
-      
+          
       - name: copy patched kernel
         run: |
-          scp rockpro64:/srv/static/linux-x13s-* .
-      
-      - name: create custom package repo in root home
+          scp rockpro64:/srv/static/linux-x13s-*.tar.xz .
+          
+      - name: create local package repository
         run: |
-          mkdir configs/releng/airootfs/root/ironrobin
-          repo-add configs/releng/airootfs/root/ironrobin/ironrobin.db.tar.gz linux-x13s-*
+          mkdir -p local/repo
+          cp linux-x13s-*.tar.xz local/repo
+          repo-add local/repo/custom.db.tar.gz linux-x13s-*.tar.xz
+
+      - uses: actions/checkout@v3
       
       - name: build the ISO
         run: |
