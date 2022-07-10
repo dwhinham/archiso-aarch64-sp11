@@ -50,6 +50,7 @@ libfido2
 libusb-compat
 #linux
 #linux-aarch64
+linux-x13s
 linux-atm
 linux-firmware
 livecd-sounds
