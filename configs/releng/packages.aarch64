@@ -113,6 +113,7 @@ vim
 vpnc
 wireless-regdb
 wireless_tools
+wget
 wpa_supplicant
 wvdial
 xfsprogs
