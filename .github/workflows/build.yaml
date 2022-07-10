@@ -9,8 +9,14 @@ jobs:
     steps:
       - name: cleanup work dir
         run: | 
-          [[ -d work ]] && echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf work/
-          [[ -d out ]]  && echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf out/
+          if [[ -d work ]]
+          then
+            echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf work/
+          fi
+          if [[ -d out ]]
+          then
+            echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf out/
+          fi
     
       - uses: actions/checkout@v3
       
