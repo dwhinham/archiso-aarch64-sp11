@@ -10,4 +10,4 @@ When = PostTransaction
 Depends = pacman
 Depends = sh
 Depends = wget
-Exec = /bin/sh -c "wget https://ironrobin.net/linux-x13s/alpha/linux-x13s-5.18.8-0-aarch64.pkg.tar.xz && pacman -U linux-x13s-5.18.8-0-aarch64.pkg.tar.xz"
+Exec = /bin/sh -c "pacman -U ~/linux-x13s-5.18.8-0-aarch64.pkg.tar.xz"
