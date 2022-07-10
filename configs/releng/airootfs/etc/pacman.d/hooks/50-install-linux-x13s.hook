@@ -9,4 +9,4 @@ Description = Installing patched kernel...
 When = PostTransaction
 Depends = pacman
 Depends = sh
-Exec = /bin/sh -c "rm /var/lib/pacman/db.lck && pacman -U --overwrite ~/linux-x13s-5.18.8-0-aarch64.pkg.tar.xz"
+Exec = /bin/sh -c "rm /var/lib/pacman/db.lck && pacman -Rs linux-aarch64 && pacman -U ~/linux-x13s-5.18.8-0-aarch64.pkg.tar.xz"
