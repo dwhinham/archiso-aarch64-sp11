@@ -18,19 +18,18 @@ jobs:
             echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf out/
           fi
           
-      - name: copy patched kernel
+      - uses: actions/checkout@v3
+          
+      - name: download patched kernel
         run: |
           scp rockpro64:/srv/static/linux-x13s-*.tar.xz .
           
-      - name: create local package repository
+      - name: create local package repository in user home
         run: |
-          pwd
           mkdir -p local/repo
           cp linux-x13s-*.tar.xz local/repo
           repo-add local/repo/custom.db.tar.gz linux-x13s-*.tar.xz
-
-      - uses: actions/checkout@v3
-      
+          
       - name: build the ISO
         run: |
           echo ${{ secrets.SUDO_PASSWD }} | sudo -S ./archiso/mkarchiso -v configs/releng
