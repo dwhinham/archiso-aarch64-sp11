@@ -49,7 +49,7 @@ lftp
 libfido2
 libusb-compat
 #linux
-linux-aarch64
+#linux-aarch64
 linux-atm
 linux-firmware
 livecd-sounds
@@ -113,7 +113,6 @@ vim
 vpnc
 wireless-regdb
 wireless_tools
-wget
 wpa_supplicant
 wvdial
 xfsprogs
