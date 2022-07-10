@@ -24,7 +24,7 @@ jobs:
         run: |
           scp rockpro64:/srv/static/linux-x13s-*.tar.xz .
           
-      - name: create local package repository in user home
+      - name: create custom package repository containing patched kernel
         run: |
           mkdir -p local/repo
           cp linux-x13s-*.tar.xz local/repo
