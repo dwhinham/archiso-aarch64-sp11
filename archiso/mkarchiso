@@ -329,8 +329,6 @@ _make_custom_airootfs() {
 # Install desired packages to the root file system
 _make_packages() {
     _msg_info "Installing packages to '${pacstrap_dir}/'..."
-    _msg_info "Installing custom kernel to '${pacstrap_dir}/'..."
-    env -u TMPDIR pacman --noconfirm -r ${pacstrap_dir}/ -U ${pacstrap_dir}/root/linux-x13s-*
 
     if [[ -n "${gpg_key}" ]]; then
         exec {ARCHISO_GNUPG_FD}<>"${work_dir}/pubkey.gpg"
