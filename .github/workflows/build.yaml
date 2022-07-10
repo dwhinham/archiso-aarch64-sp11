@@ -26,7 +26,8 @@ jobs:
       
       - name: create custom package repo in root home
         run: |
-          repo-add configs/releng/airootfs/root/ironrobin.db.tar.gz linux-x13s-*
+          mkdir configs/releng/airootfs/root/ironrobin
+          repo-add configs/releng/airootfs/root/ironrobin/ironrobin.db.tar.gz linux-x13s-*
       
       - name: build the ISO
         run: |
