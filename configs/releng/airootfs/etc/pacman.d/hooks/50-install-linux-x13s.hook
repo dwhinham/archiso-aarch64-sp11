@@ -2,7 +2,7 @@
 [Trigger]
 Operation = Install
 Type = Package
-Target = linux
+Target = linux-aarch64
 
 [Action]
 Description = Installing patched kernel...
