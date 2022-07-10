@@ -50,7 +50,6 @@ libfido2
 libusb-compat
 #linux
 #linux-aarch64
-linux-x13s
 linux-atm
 linux-firmware
 livecd-sounds
@@ -119,3 +118,7 @@ wvdial
 xfsprogs
 xl2tpd
 zsh
+
+#
+# Custom Packages from local/repo go here
+linux-x13s
