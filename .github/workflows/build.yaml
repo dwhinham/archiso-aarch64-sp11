@@ -23,6 +23,10 @@ jobs:
       - name: copy patched kernel to root home
         run: |
           scp rockpro64:/srv/static/linux-x13s-* configs/releng/airootfs/root/
+          
+      - name: create custom local package repo
+        run: |
+          repo-add configs/releng/airootfs/root/ironrobin.db.tar.gz configs/releng/airootfs/root/linux-x13s-*
       
       - name: build the ISO
         run: |
