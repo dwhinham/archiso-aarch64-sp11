@@ -9,5 +9,4 @@ Description = Installing patched kernel...
 When = PostTransaction
 Depends = pacman
 Depends = sh
-Depends = wget
 Exec = /bin/sh -c "pacman -U ~/linux-x13s-5.18.8-0-aarch64.pkg.tar.xz"
