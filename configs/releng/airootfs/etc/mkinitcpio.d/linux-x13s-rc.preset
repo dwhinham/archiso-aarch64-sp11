@@ -1,4 +1,4 @@
-# mkinitcpio preset file for the 'linux-x13s' package on archiso
+# mkinitcpio preset file for the 'linux-x13s-rc' package on archiso
 
 PRESETS=('archiso')
 
