@@ -2,7 +2,7 @@
 
 PRESETS=('archiso')
 
-ALL_kver='5.18.8-0-MANJARO-ARM'
+ALL_kver='5.19.0-rc6-0-ARCH'
 ALL_config='/etc/mkinitcpio.conf'
 
 archiso_image="/boot/initramfs-linux.img"
