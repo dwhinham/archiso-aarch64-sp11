@@ -511,6 +511,7 @@ _make_boot_on_fat_aarch64() {
         mcopy -i "${work_dir}/efiboot.img" "${all_ucode_images[@]}" "::/${install_dir}/boot/"
     fi
     _msg_info "Done!"
+    exit
 }
 
 # Create a FAT image (efiboot.img) which will serve as the EFI system partition
