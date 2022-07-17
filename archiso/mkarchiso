@@ -493,9 +493,12 @@ _make_boot_on_fat() {
 # Copy kernel, initramfs, and dtb to FAT image
 _make_boot_on_fat_aarch64() {
     local ucode_image all_ucode_images=()
-    _msg_info "Preparing kernel and initramfs for the FAT aarch64 file system..."
+    _msg_info "Preparing kernel, initramfs, and dtb for the FAT aarch64 file system..."
     mmd -i "${work_dir}/efiboot.img" \
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
+    file "${pacstrap_dir}/boot/Image"
+    file "${pacstrap_dir}/boot/initramfs-"*".img"
+    file "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/Image"* \
         "${pacstrap_dir}/boot/initramfs-"*".img" \
         "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb"* "::/${install_dir}/boot/${arch}/"
