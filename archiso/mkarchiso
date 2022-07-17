@@ -402,7 +402,7 @@ _make_boot_on_iso9660() {
     _msg_info "Preparing kernel and initramfs for the ISO 9660 file system..."
     install -d -m 0755 -- "${isofs_dir}/${install_dir}/boot/${arch}"
     install -m 0644 -- "${pacstrap_dir}/boot/initramfs-"*".img" "${isofs_dir}/${install_dir}/boot/${arch}/"
-    install -m 0644 -- "${pacstrap_dir}/boot/vmlinuz-"* "${isofs_dir}/${install_dir}/boot/${arch}/"
+    install -m 0644 -- "${pacstrap_dir}/boot/Image"* "${isofs_dir}/${install_dir}/boot/${arch}/"
 
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
@@ -476,7 +476,7 @@ _make_boot_on_fat() {
     _msg_info "Preparing kernel and initramfs for the FAT file system..."
     mmd -i "${work_dir}/efiboot.img" \
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
-    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/vmlinuz-"* \
+    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/Image"* \
         "${pacstrap_dir}/boot/initramfs-"*".img" "::/${install_dir}/boot/${arch}/"
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
@@ -545,7 +545,7 @@ _make_bootmode_uefi-x64.systemd-boot.esp() {
         "${pacstrap_dir}/usr/lib/systemd/boot/efi/systemd-bootx64.efi" \
         "${pacstrap_dir}/usr/share/edk2-shell/x64/Shell_Full.efi" \
         "${profile}/efiboot/" \
-        "${pacstrap_dir}/boot/vmlinuz-"* \
+        "${pacstrap_dir}/boot/Image"* \
         "${pacstrap_dir}/boot/initramfs-"*".img" \
         "${_available_ucodes[@]}" \
         2>/dev/null | awk 'END { print $1 }')"
@@ -848,7 +848,7 @@ _sign_netboot_artifacts() {
         fi
     done
     # TODO: should Image and Image.gz be added here?
-    for _file in "${_files_to_sign[@]}" "${_dir}${arch}/vmlinuz-"* "${_dir}${arch}/initramfs-"*.img; do
+    for _file in "${_files_to_sign[@]}" "${_dir}${arch}/Image"* "${_dir}${arch}/initramfs-"*.img; do
         openssl cms \
             -sign \
             -binary \
