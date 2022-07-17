@@ -496,12 +496,9 @@ _make_boot_on_fat_aarch64() {
     _msg_info "Preparing kernel, initramfs, and dtb for the FAT aarch64 file system..."
     mmd -i "${work_dir}/efiboot.img" \
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
-    file "${pacstrap_dir}/boot/Image"
-    file "${pacstrap_dir}/boot/initramfs-"*".img"
-    file "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb"
-    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/Image"* \
-        "${pacstrap_dir}/boot/initramfs-"*".img" \
-        "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb"* "::/${install_dir}/boot/${arch}/"
+    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/initramfs-"*".img" "::/${install_dir}/boot/${arch}/"
+    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/Image"* "::/${install_dir}/boot/${arch}/"
+    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb" "::/${install_dir}/boot/${arch}/"
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
             all_ucode_images+=("${pacstrap_dir}/boot/${ucode_image}")
@@ -511,7 +508,6 @@ _make_boot_on_fat_aarch64() {
         mcopy -i "${work_dir}/efiboot.img" "${all_ucode_images[@]}" "::/${install_dir}/boot/"
     fi
     _msg_info "Done!"
-    exit
 }
 
 # Create a FAT image (efiboot.img) which will serve as the EFI system partition
