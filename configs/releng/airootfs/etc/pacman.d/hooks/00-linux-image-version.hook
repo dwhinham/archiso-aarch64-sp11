@@ -2,7 +2,7 @@
 [Trigger]
 Operation = Install
 Type = Package
-Target = linux-aarch64
+Target = linux-steev
 
 [Action]
 Description = Changing mkinitcpio preset accroding to linux image version...
