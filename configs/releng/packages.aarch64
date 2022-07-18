@@ -3,7 +3,6 @@ alsa-utils
 amd-ucode
 arch-install-scripts
 archinstall
-b43-fwcutter
 base
 bind-tools
 brltty
@@ -94,7 +93,6 @@ screen
 sdparm
 sg3_utils
 smartmontools
-sof-firmware
 squashfs-tools
 sudo
 #syslinux
