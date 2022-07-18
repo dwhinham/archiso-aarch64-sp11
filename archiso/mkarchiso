@@ -228,6 +228,10 @@ _mkairootfs_erofs() {
     # Generate reproducible file system UUID from SOURCE_DATE_EPOCH
     fsuuid="$(uuidgen --sha1 --namespace 93a870ff-8565-4cf3-a67b-f47299271a96 --name "${SOURCE_DATE_EPOCH}")"
     _msg_info "Creating EROFS image, this may take some time..."
+    echo "fsuuid: ${fsuuid}"
+    echo "airootfs_image_tool_options[@]: ${airootfs_image_tool_options[@]}"
+    echo "image_path: ${image_path}"
+    echo "pacstrap_dir ${pacstrap_dir}"
     mkfs.erofs -U "${fsuuid}" "${airootfs_image_tool_options[@]}" -- "${image_path}" "${pacstrap_dir}"
     _msg_info "Done!"
 }
