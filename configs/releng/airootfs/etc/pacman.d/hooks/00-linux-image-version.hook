@@ -2,7 +2,7 @@
 [Trigger]
 Operation = Install
 Type = Package
-Target = linux-steev
+Target = linux-aarch64
 
 [Action]
 Description = Changing mkinitcpio preset accroding to linux image version...
@@ -10,4 +10,4 @@ When = PostTransaction
 Depends = glibc
 Depends = sed
 Depends = sh
-Exec = /bin/sh -c 'KVER=$(basename /usr/lib/modules/*ARCH) && sed -i "s/ALL_kver=.*/ALL_kver=\"$KVER\"/g" /etc/mkinitcpio.d/linux-steev.preset'
+Exec = /bin/sh -c 'KVER=$(basename /usr/lib/modules/*ARCH) && sed -i "s/ALL_kver=.*/ALL_kver=\"$KVER\"/g" /etc/mkinitcpio.d/linux-aarch64.preset'
