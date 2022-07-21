@@ -495,6 +495,7 @@ _make_boot_on_fat() {
 _make_boot_on_fat_aarch64() {
     local ucode_image all_ucode_images=()
     _msg_info "Preparing kernel, initramfs, and dtb for the FAT aarch64 file system..."
+    file "${pacstrap_dir}/boot/vmlinuz-"*
     mmd -i "${work_dir}/efiboot.img" \
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/initramfs-"*".img" "::/${install_dir}/boot/${arch}/"
