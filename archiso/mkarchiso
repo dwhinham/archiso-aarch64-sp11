@@ -403,7 +403,7 @@ _make_boot_on_iso9660() {
     install -d -m 0755 -- "${isofs_dir}/${install_dir}/boot/${arch}"
     install -m 0644 -- "${pacstrap_dir}/boot/initramfs-"*".img" "${isofs_dir}/${install_dir}/boot/${arch}/"
     install -m 0644 -- "${pacstrap_dir}/boot/Image" "${isofs_dir}/${install_dir}/boot/${arch}/"
-    install -m 0644 -- "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb" "${isofs_dir}/${install_dir}/boot/${arch}/"
+    install -m 0644 -- "${pacstrap_dir}/boot/sc8280xp-thinkpad.dtb" "${isofs_dir}/${install_dir}/boot/${arch}/"
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
             install -m 0644 -- "${pacstrap_dir}/boot/${ucode_image}" "${isofs_dir}/${install_dir}/boot/"
@@ -478,7 +478,7 @@ _make_boot_on_fat() {
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/Image" \
         "${pacstrap_dir}/boot/initramfs-"*".img" \
-        "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb" "::/${install_dir}/boot/${arch}/"
+        "${pacstrap_dir}/boot/sc8280xp-thinkpad.dtb" "::/${install_dir}/boot/${arch}/"
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
             all_ucode_images+=("${pacstrap_dir}/boot/${ucode_image}")
@@ -498,7 +498,7 @@ _make_boot_on_fat_aarch64() {
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/initramfs-"*".img" "::/${install_dir}/boot/${arch}/"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/Image" "::/${install_dir}/boot/${arch}/"
-    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb" "::/${install_dir}/boot/${arch}/"
+    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/sc8280xp-thinkpad.dtb" "::/${install_dir}/boot/${arch}/"
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
             all_ucode_images+=("${pacstrap_dir}/boot/${ucode_image}")
@@ -549,7 +549,7 @@ _make_bootmode_uefi-x64.systemd-boot.esp() {
         "${profile}/efiboot/" \
         "${pacstrap_dir}/boot/Image" \
         "${pacstrap_dir}/boot/initramfs-"*".img" \
-        "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb" \
+        "${pacstrap_dir}/boot/sc8280xp-thinkpad.dtb" \
         "${_available_ucodes[@]}" \
         2>/dev/null | awk 'END { print $1 }')"
     # Create a FAT image for the EFI system partition
@@ -599,7 +599,7 @@ _make_bootmode_uefi-aarch64.systemd-boot.esp() {
         "${profile}/efiboot/" \
         "${pacstrap_dir}/boot/Image" \
         "${pacstrap_dir}/boot/initramfs-"*".img" \
-        "${pacstrap_dir}/boot/dtbs/qcom/sc8280xp-thinkpad.dtb" \
+        "${pacstrap_dir}/boot/sc8280xp-thinkpad.dtb" \
         "${_available_ucodes[@]}" \
         2>/dev/null | awk 'END { print $1 }')"
     # Create a FAT image for the EFI system partition
