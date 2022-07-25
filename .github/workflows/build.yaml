@@ -20,15 +20,11 @@ jobs:
           
       - uses: actions/checkout@v3
           
-      - name: download patched kernel
+      - name: download leo x13s repo pubkey
         run: |
-          scp rockpro64:/srv/static/linux-steev*.tar.xz .
-          
-      - name: create custom package repository containing patched kernel
-        run: |
-          mkdir -p local/repo
-          cp linux-steev*.tar.xz local/repo
-          repo-add local/repo/custom.db.tar.gz linux-steev*.tar.xz
+          wget https://lecs.dev/repo/public.asc
+          pacman-key --add public.asc
+          pacman-key --lsign 9FD0B48BBBD974B80A3310AB6462EE0B8E382F3F
           
       - name: build the ISO
         run: |
