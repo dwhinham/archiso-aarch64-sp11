@@ -9,6 +9,6 @@ The instructions in installation guide in `/root` mostly apply, however there ar
 
  * Currently, the regular `linux-aarch64` and `linux-aarch64-rc` kernels don't work, until this is sorted out you can use the `x13s` repository included in the image (see `/etc/pacman.conf`) and install `linux-x13s` from it.
  * The `x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use Leo's prebuilt packages
- ```
+ 
 [x13s]
 Server = https://lecs.dev/repo
