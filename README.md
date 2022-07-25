@@ -7,6 +7,7 @@ PKGBUILDs for the packages used in this image can be found [here](https://github
 ## Installation
 The instructions in installation guide in `/root` mostly apply, however there are some things specific to the X13s to be aware of:
 
+ * The internal drive is `/dev/nvme0n1`, and USB storage will be `/dev/sdX`.
  * Currently, the regular `linux-aarch64` and `linux-aarch64-rc` kernels don't work, until this is sorted out you can use the `x13s` repository included in the image (see `/etc/pacman.conf`) and install `linux-x13s` from it.
  * The `x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use Leo's prebuilt packages
 ```
