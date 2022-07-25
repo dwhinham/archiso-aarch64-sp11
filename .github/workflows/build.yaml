@@ -23,8 +23,8 @@ jobs:
       - name: download leo x13s repo pubkey
         run: |
           wget https://lecs.dev/repo/public.asc
-          pacman-key --add public.asc
-          pacman-key --lsign 9FD0B48BBBD974B80A3310AB6462EE0B8E382F3F
+          echo ${{ secrets.SUDO_PASSWD }} | sudo -S pacman-key --add public.asc
+          echo ${{ secrets.SUDO_PASSWD }} | sudo -S pacman-key --lsign 9FD0B48BBBD974B80A3310AB6462EE0B8E382F3F
           
       - name: build the ISO
         run: |
