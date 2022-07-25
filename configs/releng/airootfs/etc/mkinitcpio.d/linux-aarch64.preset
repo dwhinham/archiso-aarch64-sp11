@@ -1,8 +1,8 @@
-# mkinitcpio preset file for the 'linux-steev' package on archiso
+# mkinitcpio preset file for the 'linux-aarch64' package on archiso
 
 PRESETS=('archiso')
 
-ALL_kver='/boot/Image'
+ALL_kver='5.11.4-1-ARCH'
 ALL_config='/etc/mkinitcpio.conf'
 
 archiso_image="/boot/initramfs-linux.img"
