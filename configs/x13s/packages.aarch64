@@ -47,8 +47,6 @@ less
 lftp
 libfido2
 libusb-compat
-#linux
-#linux-aarch64
 linux-atm
 linux-firmware
 livecd-sounds
@@ -120,4 +118,4 @@ zsh
 
 #
 # Custom Packages from local/repo go here
-linux-steev
+linux-x13s
