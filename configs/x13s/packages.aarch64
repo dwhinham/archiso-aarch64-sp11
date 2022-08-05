@@ -48,7 +48,6 @@ lftp
 libfido2
 libusb-compat
 linux-atm
-linux-firmware
 livecd-sounds
 lsscsi
 lvm2
@@ -119,3 +118,4 @@ zsh
 #
 # Custom Packages go here
 linux-x13s
+x13s-firmware
