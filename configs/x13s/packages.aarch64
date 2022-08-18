@@ -3,6 +3,7 @@ alsa-utils
 amd-ucode
 arch-install-scripts
 archinstall
+archlinuxarm-keyring
 base
 bind-tools
 brltty
@@ -34,7 +35,6 @@ gpart
 gpm
 gptfdisk
 grml-zsh-config
-haveged
 hdparm
 #intel-ucode
 #ipw2100-fw
