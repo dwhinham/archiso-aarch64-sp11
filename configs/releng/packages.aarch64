@@ -36,6 +36,7 @@ gpart
 gpm
 gptfdisk
 grml-zsh-config
+haveged
 hdparm
 #intel-ucode
 #ipw2100-fw
