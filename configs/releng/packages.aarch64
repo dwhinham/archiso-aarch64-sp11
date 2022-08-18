@@ -1,4 +1,5 @@
 # TODO: might need archlinuxarm-keyring and archlinux-keyring (note that archlinux-keyring has never existed in the x86_64 iso installer)
+archlinuxarm-keyring
 alsa-utils
 amd-ucode
 arch-install-scripts
