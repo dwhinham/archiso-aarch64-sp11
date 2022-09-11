@@ -1,6 +1,7 @@
 # archiso for Lenovo ThinkPad X13s
 
-This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available [here](https://ironrobin.net/linux-x13s/alpha/).
+This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available [here](https://ironrobin.net/linux-x13s/alpha/). Note: There is a regression right now, the last bootable image is archlinuxarm-2022.08.05-aarch64.iso, with Arch Linux 5.19.0-0-x13s
+
 
 PKGBUILDs for the packages used in this image can be found [here](https://github.com/szclsya/x13s-alarm).
 
