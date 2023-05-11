@@ -30,3 +30,9 @@ curl -O https://lecs.dev/repo/public.asc
 pacman-key --add public.asc
 pacman-key --lsign 9FD0B48BBBD974B80A3310AB6462EE0B8E382F3F
 ```
+
+If this project helped you, you can buy me a cup of coffee :)
+<br/><br/>
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/theironrobin)
+<br/><br/>
+DOGE address: DLDNfkXoJeueb2GRx4scnmRc12SX1H22VW
