@@ -4,7 +4,7 @@
 iso_name="archlinuxarm"
 iso_label="ARCH_AARCH64_$(date +%Y%m)"
 iso_publisher="Alex R"
-iso_application="Generic ARM64 Arch Linux Live/Rescue Disk"
+iso_application="ARM64 Arch Linux Live/Rescue Disk for ThinkPad X13s"
 iso_version="$(date +%Y.%m.%d)"
 install_dir="arch"
 buildmodes=('iso')

@@ -117,7 +117,6 @@ xfsprogs
 xl2tpd
 zsh
 
-#
 # Custom Packages go here
-linux-x13s
+linux-x13s-archiso
 x13s-firmware
