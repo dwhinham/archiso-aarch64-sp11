@@ -3,7 +3,7 @@ set -e
 cd /build
 
 pacman-key --init
-pacman -Syu --noconfirm --needed sudo erofs-utils dosfstools mtools
+pacman -Syu --noconfirm --needed sudo erofs-utils dosfstools mtools arch-install-scripts git wget curl
 useradd builduser -m
 chown -R builduser:builduser /build
 passwd -d builduser
