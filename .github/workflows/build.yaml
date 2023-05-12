@@ -21,10 +21,10 @@ jobs:
           
       - uses: actions/checkout@v3
           
-      - name: add ironrobin public key
-        run: |
-          echo ${{ secrets.SUDO_PASSWD }} | sudo pacman-key --recv-keys 6ED02751500A833A --keyserver pgp.mit.edu
-          echo ${{ secrets.SUDO_PASSWD }} | sudo pacman-key --lsign-key 6ED02751500A833A
+      # - name: add ironrobin public key iff n
+      #   run: |
+      #     echo ${{ secrets.SUDO_PASSWD }} | sudo pacman-key --recv-keys 6ED02751500A833A --keyserver pgp.mit.edu
+      #     echo ${{ secrets.SUDO_PASSWD }} | sudo pacman-key --lsign-key 6ED02751500A833A
           
       - name: build the ISO
         run: |
