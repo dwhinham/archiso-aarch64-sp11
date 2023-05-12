@@ -4,6 +4,7 @@ name: run mkarchiso
 #   workflow_dispatch: {}
 on: [push, pull_request]
 
+
 jobs:
   build:
     runs-on: [self-hosted, linux, ARM64]
