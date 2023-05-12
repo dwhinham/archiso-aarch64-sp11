@@ -3,7 +3,7 @@ set -e
 cd /build
 
 pacman-key --init
-pacman -Syu --noconfirm
+pacman -Syu --noconfirm --needed sudo
 useradd builduser -m
 chown -R builduser:builduser /build
 passwd -d builduser
