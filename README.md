@@ -15,8 +15,8 @@ The instructions in the [Installation_guide](https://wiki.archlinux.org/title/In
 
  * The internal drive is `/dev/nvme0n1`, and USB storage will be `/dev/sdX`.
  * The X13s ships with an existing EFI system partition on the internal drive that you can use `/dev/nvme0n1p1`.
- * Currently, the regular `linux-aarch64` and `linux-aarch64-rc` kernels don't work, until this is sorted out you can use the `x13s` repository and install `linux-x13s` from it.
- * The `x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use X13s packages
+ * Currently, the regular `linux-aarch64` and `linux-aarch64-rc` kernels don't work, until this is sorted out you can use the `ironrobin-x13s` repository and install `linux-x13s` from it.
+ * The `ironrobin-x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use X13s packages
 ```
 [ironrobin-x13s]
 Server = https://github.com/ironrobin/x13s-alarm/releases/download/packages
