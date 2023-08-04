@@ -21,4 +21,6 @@ file_permissions=(
   ["/usr/local/bin/choose-mirror"]="0:0:755"
   ["/usr/local/bin/Installation_guide"]="0:0:755"
   ["/usr/local/bin/livecd-sound"]="0:0:755"
+  ["/usr/local/bin/ironrobin-setup"]="0:0:755"
+  ["/usr/local/bin/workman"]="0:0:755"
 )

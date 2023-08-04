@@ -8,3 +8,4 @@ Ethernet, WLAN and WWAN interfaces using DHCP should work automatically.
 After connecting to the internet, run [35mtimedatectl set-ntp true[0m, then the installation guide can be accessed
 via the convenience script [35mInstallation_guide[0m.
 
+If you want to use the ironrobin-x13s pacman repo, you may run the convenience script [35mironrobin-setup[0m.

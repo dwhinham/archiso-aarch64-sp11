@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "Adding workman.map to /etc/vconsole.conf"
+echo 'KEYMAP=/usr/local/share/keymaps/i386/workman/workman.map' > /etc/vconsole.conf
+
+echo "Restarting systemd-vconsole-setup.service"
+systemctl restart systemd-vconsole-setup.service
+
+echo "Done!"

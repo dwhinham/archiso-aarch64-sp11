@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+echo "Checking for internet connection"
+if ! ping -c 1 archlinux.org; then
+    echo "No internet connection detected. Please connect to the internet and try again."
+    exit 1
+fi
+
+echo "Checking for ironrobin-x13s repository in pacman"
+if grep -q "\[ironrobin-x13s\]" /etc/pacman.conf; then
+    echo "ironrobin-x13s repository already in pacman"
+else
+    echo "Adding ironrobin-x13s repository to pacman"
+    echo -e "\n[ironrobin-x13s]\nServer = https://github.com/ironrobin/x13s-alarm/releases/download/packages\n" >> /etc/pacman.conf
+fi
+
+echo "Checking for ironrobin-x13s gpg keys in pacman"
+if pacman-key --list-keys 6ED02751500A833A; then
+    echo "ironrobin-x13s gpg keys already in pacman"
+else
+    echo "Adding ironrobin-x13s gpg keys to pacman"
+    pacman-key --recv-keys 6ED02751500A833A --keyserver pgp.mit.edu
+    pacman-key --lsign-key 6ED02751500A833A
+fi
+
+echo "Updating pacman database"
+pacman -Sy
