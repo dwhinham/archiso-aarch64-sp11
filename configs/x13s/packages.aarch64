@@ -86,7 +86,7 @@ pv
 qemu-guest-agent
 #reflector
 reiserfsprogs
-rp-pppoe
+#rp-pppoe
 rsync
 rxvt-unicode-terminfo
 screen
