@@ -19,7 +19,7 @@ if pacman-key --list-keys 6ED02751500A833A; then
     echo "ironrobin-x13s gpg keys already in pacman"
 else
     echo "Adding ironrobin-x13s gpg keys to pacman"
-    pacman-key --recv-keys 6ED02751500A833A --keyserver pgp.mit.edu
+    pacman-key --recv-keys 6ED02751500A833A
     pacman-key --lsign-key 6ED02751500A833A
 fi
 
