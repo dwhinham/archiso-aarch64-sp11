@@ -50,6 +50,8 @@ lftp
 libfido2
 libusb-compat
 linux-atm
+linux-firmware
+linux-firmware-qcom
 livecd-sounds
 lsscsi
 lvm2
@@ -67,7 +69,6 @@ mtools
 nano
 nbd
 ndisc6
-neofetch
 nfs-utils
 nilfs-utils
 nmap
@@ -85,7 +86,6 @@ pptpclient
 pv
 qemu-guest-agent
 #reflector
-reiserfsprogs
 #rp-pppoe
 rsync
 rxvt-unicode-terminfo
@@ -118,5 +118,4 @@ xl2tpd
 zsh
 
 # Custom Packages go here
-linux-x13s-archiso
-x13s-firmware
+linux-x13s
