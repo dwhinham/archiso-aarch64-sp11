@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Checking for internet connection"
-if ! ping -c 1 archlinux.org; then
+if ! ping -c 1 archlinuxarm.org; then
     echo "No internet connection detected. Please connect to the internet and try again."
     exit 1
 fi
