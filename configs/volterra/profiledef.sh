@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="archlinuxarm-x13s"
+iso_name="archlinuxarm-volterra"
 iso_label="ARCH_AARCH64_$(date +%Y%m)"
 iso_publisher="Alex R"
-iso_application="ARM64 Arch Linux Live/Rescue Disk for ThinkPad X13s"
+iso_application="ARM64 Arch Linux Live/Rescue Disk for Windows Dev Kit 2023"
 iso_version="$(date +%Y.%m.%d)"
 install_dir="arch"
 buildmodes=('iso')

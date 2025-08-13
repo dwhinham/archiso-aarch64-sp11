@@ -498,7 +498,11 @@ _make_boot_on_fat_aarch64() {
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/initramfs-"*".img" "::/${install_dir}/boot/${arch}/"
     mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/vmlinux" "::/${install_dir}/boot/${arch}/"
-    mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/sc8280xp-lenovo-thinkpad-x13s.dtb" "::/${install_dir}/boot/${arch}/"
+    if [[ "${iso_name}" == "archlinuxarm-volterra" ]]; then
+        mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/sc8280xp-microsoft-blackrock.dtb" "::/${install_dir}/boot/${arch}/"
+    else
+        mcopy -i "${work_dir}/efiboot.img" "${pacstrap_dir}/boot/sc8280xp-lenovo-thinkpad-x13s.dtb" "::/${install_dir}/boot/${arch}/"
+    fi
     for ucode_image in "${ucodes[@]}"; do
         if [[ -e "${pacstrap_dir}/boot/${ucode_image}" ]]; then
             all_ucode_images+=("${pacstrap_dir}/boot/${ucode_image}")
@@ -594,14 +598,25 @@ _make_bootmode_uefi-aarch64.systemd-boot.esp() {
         fi
     done
     # Calculate the required FAT image size in bytes
-    efiboot_imgsize="$(du -bc \
-        "${pacstrap_dir}/usr/lib/systemd/boot/efi/systemd-bootaa64.efi" \
-        "${profile}/efiboot/" \
-        "${pacstrap_dir}/boot/vmlinux" \
-        "${pacstrap_dir}/boot/initramfs-"*".img" \
-        "${pacstrap_dir}/boot/sc8280xp-lenovo-thinkpad-x13s.dtb" \
-        "${_available_ucodes[@]}" \
-        2>/dev/null | awk 'END { print $1 }')"
+    if [[ "${iso_name}" == "archlinuxarm-volterra" ]]; then
+        efiboot_imgsize="$(du -bc \
+            "${pacstrap_dir}/usr/lib/systemd/boot/efi/systemd-bootaa64.efi" \
+            "${profile}/efiboot/" \
+            "${pacstrap_dir}/boot/vmlinux" \
+            "${pacstrap_dir}/boot/initramfs-"*".img" \
+            "${pacstrap_dir}/boot/sc8280xp-microsoft-blackrock.dtb" \
+            "${_available_ucodes[@]}" \
+            2>/dev/null | awk 'END { print $1 }')"
+    else
+        efiboot_imgsize="$(du -bc \
+            "${pacstrap_dir}/usr/lib/systemd/boot/efi/systemd-bootaa64.efi" \
+            "${profile}/efiboot/" \
+            "${pacstrap_dir}/boot/vmlinux" \
+            "${pacstrap_dir}/boot/initramfs-"*".img" \
+            "${pacstrap_dir}/boot/sc8280xp-lenovo-thinkpad-x13s.dtb" \
+            "${_available_ucodes[@]}" \
+            2>/dev/null | awk 'END { print $1 }')"
+    fi
     # Create a FAT image for the EFI system partition
     _make_efibootimg "$efiboot_imgsize"
 
