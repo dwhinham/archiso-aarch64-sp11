@@ -29,7 +29,6 @@ espeakup
 ethtool
 exfatprogs
 f2fs-tools
-fastfetch
 fatresize
 fsarchiver
 gnu-netcat
@@ -63,7 +62,7 @@ mc
 mdadm
 #memtest86+
 mkinitcpio
-#mkinitcpio-archiso
+mkinitcpio-archiso
 mkinitcpio-nfs-utils
 modemmanager
 mtools
