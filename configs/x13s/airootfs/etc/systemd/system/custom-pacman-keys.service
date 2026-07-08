@@ -1,0 +1,15 @@
+[Unit]
+Description=Import custom pacman repository keys
+After=pacman-init.service
+Requires=pacman-init.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/pacman-key --add /usr/local/share/pacman/custom-keys/ironrobin.gpg
+ExecStart=/usr/bin/pacman-key --lsign-key 1B623AEF2DC40C944C3A51E66ED02751500A833A
+ExecStart=/usr/bin/pacman-key --add /usr/local/share/pacman/custom-keys/drzee.gpg
+ExecStart=/usr/bin/pacman-key --lsign-key 9B2C213B21883BB65CE2FB900CF25682E6BA0751
+
+[Install]
+WantedBy=multi-user.target

@@ -6,7 +6,7 @@ X13s specific packages can be found [here](https://github.com/ironrobin/x13s-ala
 
 ## Boot instructions
 1. Download the latest Pre-built image
-2. Flash to a USB `dd bs=4M if=archlinuxarm-YYYY.MM.DD-aarch64.iso of=<DEV-TARGET> conv=fsync oflag=direct status=progress`
+2. Flash to a USB `dd bs=4M if=archlinux-x13s-YYYY.MM.DD-aarch64.iso of=<DEV-TARGET> conv=fsync oflag=direct status=progress`
 3. Reboot the laptop, and press F12 when the Lenovo logo appears
 4. Select the USB to boot
 

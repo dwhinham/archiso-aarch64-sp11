@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DRZEE_KEY="9B2C213B21883BB65CE2FB900CF25682E6BA0751"
+IRONROBIN_KEY="1B623AEF2DC40C944C3A51E66ED02751500A833A"
+
+echo "Checking for internet connection"
+if ! ping -c 1 archlinux.org >/dev/null 2>&1; then
+    echo "No internet connection detected. Please connect to the internet and try again."
+    exit 1
+fi
+
+echo "Checking for Arch Linux Ports repositories in pacman"
+if grep -q "arch-linux-repo.drzee.net" /etc/pacman.conf; then
+    echo "Arch Linux Ports repositories already in pacman"
+else
+    echo "Adding Arch Linux Ports repositories to pacman"
+    cat >> /etc/pacman.conf <<'EOF'
+
+[forge]
+Server = https://arch-linux-repo.drzee.net/arch/$repo/os/$arch
+
+[core]
+Server = https://arch-linux-repo.drzee.net/arch/$repo/os/$arch
+
+[extra]
+Server = https://arch-linux-repo.drzee.net/arch/$repo/os/$arch
+EOF
+fi
+
+echo "Checking for DrZee/Arch Ports gpg key in pacman"
+if pacman-key --list-keys "$DRZEE_KEY" >/dev/null 2>&1; then
+    echo "DrZee/Arch Ports gpg key already in pacman"
+else
+    echo "Adding DrZee/Arch Ports gpg key to pacman"
+    curl -fsSL https://arch-linux-repo.drzee.net/arch/extra/os/aarch64/public.key -o /tmp/drzee-public.key
+    pacman-key --add /tmp/drzee-public.key
+    pacman-key --lsign-key "$DRZEE_KEY"
+    rm -f /tmp/drzee-public.key
+fi
+
+echo "Checking for ironrobin-x13s repository in pacman"
+if grep -q "\[ironrobin-x13s\]" /etc/pacman.conf; then
+    echo "ironrobin-x13s repository already in pacman"
+else
+    echo "Adding ironrobin-x13s repository to pacman"
+    cat >> /etc/pacman.conf <<'EOF'
+
+[ironrobin-x13s]
+Server = https://github.com/ironrobin/x13s-alarm/releases/download/packages
+EOF
+fi
+
+echo "Checking for ironrobin-x13s gpg key in pacman"
+if pacman-key --list-keys "$IRONROBIN_KEY" >/dev/null 2>&1; then
+    echo "ironrobin-x13s gpg key already in pacman"
+else
+    echo "Adding ironrobin-x13s gpg key to pacman"
+    pacman-key --recv-keys "$IRONROBIN_KEY"
+    pacman-key --lsign-key "$IRONROBIN_KEY"
+fi
+
+echo "Updating pacman database"
+pacman -Sy

@@ -302,8 +302,9 @@ _make_pacman_conf() {
     # HookDir is *always* set to the airootfs' override directory
     # see `man 8 pacman` for further info
     pacman-conf --config "${pacman_conf}" \
-        | sed "/CacheDir/d;/DBPath/d;/HookDir/d;/LogFile/d;/RootDir/d;/\[options\]/a CacheDir = ${_cache_dirs}
-        /\[options\]/a HookDir = ${pacstrap_dir}/etc/pacman.d/hooks/" >"${work_dir}/${buildmode}.pacman.conf"
+        | sed "/^[[:space:]]*CacheDir/d;/^[[:space:]]*DBPath/d;/^[[:space:]]*HookDir/d;/^[[:space:]]*LogFile/d;/^[[:space:]]*RootDir/d;/^[[:space:]]*GPGDir/d;/\[options\]/a CacheDir = ${_cache_dirs}
+        /\[options\]/a HookDir = ${pacstrap_dir}/etc/pacman.d/hooks/
+        /\[options\]/a GPGDir = ${work_dir}/pacman-gnupg/" >"${work_dir}/${buildmode}.pacman.conf"
 }
 
 # Prepare working directory and copy custom root file system files.
@@ -337,6 +338,39 @@ _make_custom_airootfs() {
         done
         _msg_info "Done!"
     fi
+}
+
+# Prepare a custom keyring for the work directory
+_prepare_custom_keyring() {
+    local build_gpgdir="${work_dir}/pacman-gnupg"
+    local keydir="${profile}/airootfs/usr/local/share/pacman/custom-keys"
+    local keys=(
+        "ironrobin.gpg:1B623AEF2DC40C944C3A51E66ED02751500A833A"
+        "drzee.gpg:9B2C213B21883BB65CE2FB900CF25682E6BA0751"
+    )
+    local key file id
+
+    _msg_info "Preparing custom pacman keyring..."
+
+    [[ -d "${keydir}" ]] || _msg_error "Missing custom key directory: ${keydir}"
+
+    rm -rf -- "${build_gpgdir}"
+    install -d -m 700 "${build_gpgdir}"
+
+    pacman-key --gpgdir "${build_gpgdir}" --init
+    pacman-key --gpgdir "${build_gpgdir}" --populate
+
+    for key in "${keys[@]}"; do
+        file="${key%%:*}"
+        id="${key##*:}"
+
+        [[ -f "${keydir}/${file}" ]] || _msg_error "Missing key file: ${keydir}/${file}"
+
+        pacman-key --gpgdir "${build_gpgdir}" --add "${keydir}/${file}"
+        pacman-key --gpgdir "${build_gpgdir}" --lsign-key "${id}"
+    done
+
+    _msg_info "Done preparing custom pacman keyring."
 }
 
 # Install desired packages to the root file system
@@ -1753,6 +1787,7 @@ _build_iso_base() {
     _run_once _make_pacman_conf
     [[ -z "${gpg_key}" ]] || _run_once _export_gpg_publickey
     _run_once _make_custom_airootfs
+    _run_once _prepare_custom_keyring
     _run_once _make_packages
     _run_once _make_version
     _run_once _make_customize_airootfs

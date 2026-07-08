@@ -4,7 +4,7 @@
 iso_name="archlinux-x13s"
 iso_label="ARCH_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
 iso_publisher="Alex Robinson <alex@ironrobin.net>"
-iso_application="ARM64 Arch Linux Live/Rescue Disk for ThinkPad X13s"
+iso_application="Arch Linux Ports - aarch64 Live/Rescue Disk for ThinkPad X13s"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)"
 install_dir="arch"
 buildmodes=('iso')
@@ -24,5 +24,6 @@ file_permissions=(
   ["/usr/local/bin/choose-mirror"]="0:0:755"
   ["/usr/local/bin/Installation_guide"]="0:0:755"
   ["/usr/local/bin/livecd-sound"]="0:0:755"
-  ["/usr/local/bin/ironrobin-setup"]="0:0:755"
+  ["/usr/local/bin/x13s-repo-setup"]="0:0:755"
+  ["/usr/local/bin/x13s-pacstrap"]="0:0:755"
 )

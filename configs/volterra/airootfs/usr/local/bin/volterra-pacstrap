@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+pacstrap "$@"
+
+target="$1"
+cp /usr/local/bin/volterra-repo-setup "$target/usr/local/bin/"
+arch-chroot "$target" /usr/local/bin/volterra-repo-setup
+rm -f "$target/usr/local/bin/volterra-repo-setup"
