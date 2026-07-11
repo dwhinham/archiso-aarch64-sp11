@@ -1,6 +1,6 @@
 # archiso for Lenovo ThinkPad X13s
 
-This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available in [Releases](https://github.com/ironrobin/archiso-x13s/releases). These images use a [custom kernel](https://github.com/ironrobin/x13s-alarm/tree/trunk/linux-x13s-archiso)/[firmware](https://github.com/ironrobin/x13s-alarm/tree/trunk/x13s-firmware) to make the iso work reliably. 
+This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available in [Releases](https://github.com/ironrobin/archiso-x13s/releases).
 
 X13s specific packages can be found [here](https://github.com/ironrobin/x13s-alarm/releases/tag/packages).
 
@@ -15,7 +15,6 @@ The instructions in the [Installation_guide](https://wiki.archlinux.org/title/In
 
  * The internal drive is `/dev/nvme0n1`, and USB storage will be `/dev/sdX`.
  * The X13s ships with an existing EFI system partition on the internal drive that you can use `/dev/nvme0n1p1`.
- * Currently, the regular `linux-aarch64` and `linux-aarch64-rc` kernels don't work, until this is sorted out you can use the `ironrobin-x13s` repository and install `linux-x13s` from it.
  * The `ironrobin-x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use X13s packages
 ```
 [ironrobin-x13s]
