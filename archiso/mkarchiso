@@ -543,10 +543,12 @@ _make_boot_on_fat() {
     _msg_info "Preparing kernel and initramfs for the FAT file system..."
     mmd -i "${efibootimg}" \
         "::/${install_dir}" "::/${install_dir}/boot" "::/${install_dir}/boot/${arch}"
+    dtb_path="$(find "${pacstrap_dir}/usr/lib/modules" \
+        -path "*/dtb/qcom/${dtb}" -print -quit)"
     mcopy -i "${efibootimg}" \
-        "${pacstrap_dir}/boot/vmlinux"* \
+        "${pacstrap_dir}/boot/vmlinuz-linux"* \
         "${pacstrap_dir}/boot/initramfs-"*".img" \
-        "${pacstrap_dir}/boot/${dtb}" \
+        "${dtb_path}" \
         "::/${install_dir}/boot/${arch}/"
     if (( need_external_ucodes )); then
         for ucode_image in "${ucodes[@]}"; do
@@ -886,13 +888,15 @@ _make_bootmode_uefi.systemd-boot() {
             fi
         done
     fi
+    dtb_path="$(find "${pacstrap_dir}/usr/lib/modules" \
+        -path "*/dtb/qcom/${dtb}" -print -quit)"
     # Calculate the required FAT image size in bytes
     efiboot_files+=("${pacstrap_dir}/usr/lib/systemd/boot/efi/systemd-boot${uefi_arch[$arch],,}.efi"
                     "${pacstrap_dir}/usr/share/edk2-shell/${uefi_arch[$arch],,}/Shell_Full.efi"
                     "${work_dir}/loader/"
-                    "${pacstrap_dir}/boot/vmlinux"*
+                    "${pacstrap_dir}/boot/vmlinuz-linux"*
                     "${pacstrap_dir}/boot/initramfs-"*".img"
-                    "${pacstrap_dir}/boot/${dtb}"
+                    "${dtb_path}"
                     "${_available_ucodes[@]}")
 
     # Files specific to x86_64: IA32 UEFI binaries for mixed mode booting, memtest86+
@@ -1747,12 +1751,20 @@ _make_version() {
 _make_pkglist() {
     _msg_info "Creating a list of installed packages on live-enviroment..."
     case "${buildmode}" in
-        "bootstrap")
-            pacman -Q --sysroot "${pacstrap_dir}" >"${bootstrap_parent}/pkglist.${arch}.txt"
+        bootstrap)
+            pacman -Q \
+                --config "${work_dir}/${buildmode}.pacman.conf" \
+                --dbpath "${pacstrap_dir}/var/lib/pacman" \
+                --gpgdir "${work_dir}/pacman-gnupg" \
+                >"${bootstrap_parent}/pkglist.${arch}.txt"
             ;;
-        "iso"|"netboot")
+        iso|netboot)
             install -d -m 0755 -- "${isofs_dir}/${install_dir}"
-            pacman -Q --sysroot "${pacstrap_dir}" >"${isofs_dir}/${install_dir}/pkglist.${arch}.txt"
+            pacman -Q \
+                --config "${work_dir}/${buildmode}.pacman.conf" \
+                --dbpath "${pacstrap_dir}/var/lib/pacman" \
+                --gpgdir "${work_dir}/pacman-gnupg" \
+                >"${isofs_dir}/${install_dir}/pkglist.${arch}.txt"
             ;;
     esac
     _msg_info "Done!"

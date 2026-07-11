@@ -2,7 +2,6 @@
 alsa-utils
 amd-ucode
 arch-install-scripts
-archinstall
 base
 bind-tools
 brltty
@@ -49,7 +48,8 @@ lftp
 libfido2
 libusb-compat
 linux-atm
-#linux-firmware
+linux
+linux-dtbs
 #linux-firmware-qcom
 livecd-sounds
 lsscsi
@@ -117,5 +117,5 @@ xl2tpd
 zsh
 
 # Custom Packages go here
-linux-volterra
 volterra-firmware
+archinstall-aarch64
