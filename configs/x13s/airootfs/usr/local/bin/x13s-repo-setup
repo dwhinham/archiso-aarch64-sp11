@@ -47,7 +47,7 @@ else
     cat >> /etc/pacman.conf <<'EOF'
 
 [ironrobin-aarch64]
-Server = https://github.com/ironrobin/aarch64/releases/download/packages
+Server = https://codeberg.org/ironrobin/aarch64/releases/download/packages
 EOF
 fi
 

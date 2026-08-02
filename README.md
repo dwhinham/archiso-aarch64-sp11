@@ -1,8 +1,8 @@
 # archiso for Lenovo ThinkPad X13s
 
-This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available in [Releases](https://github.com/ironrobin/archiso-x13s/releases).
+This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available in [Releases](https://codeberg.org/ironrobin/archiso-x13s/releases).
 
-X13s specific packages can be found [here](https://github.com/ironrobin/x13s-alarm/releases/tag/packages).
+aarch64 specific packages can be found [here](https://codeberg.org/ironrobin/aarch64/releases/tag/packages).
 
 ## Boot instructions
 1. Download the latest Pre-built image
@@ -17,13 +17,8 @@ The instructions in the [Installation_guide](https://wiki.archlinux.org/title/In
  * The X13s ships with an existing EFI system partition on the internal drive that you can use `/dev/nvme0n1p1`.
  * The `ironrobin-x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use X13s packages
 ```
-[ironrobin-x13s]
-Server = https://github.com/ironrobin/x13s-alarm/releases/download/packages
-```
-OR
-```
-[ironrobin-volterra]
-Server = https://github.com/ironrobin/volterra-alarm/releases/download/packages
+[ironrobin-aarch64]
+Server = https://codeberg.org/ironrobin/aarch64/releases/download/packages
 ```
 
 You'll need to trust the public key in order to verify package signature:
