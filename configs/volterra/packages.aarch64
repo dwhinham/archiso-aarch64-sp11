@@ -50,7 +50,7 @@ libusb-compat
 linux-atm
 linux
 linux-dtbs
-#linux-firmware-qcom
+linux-firmware-qcom
 livecd-sounds
 lsscsi
 lvm2
