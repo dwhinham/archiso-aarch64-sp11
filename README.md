@@ -28,8 +28,6 @@ sudo pacman-key --recv-keys 6ED02751500A833A
 sudo pacman-key --lsign-key 6ED02751500A833A
 ```
 
-If this project helped you, you can buy me a cup of coffee :)
-<br/><br/>
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/theironrobin)
-<br/><br/>
-DOGE address: DRUZaJueWL3G7Y6d9MSBx23vcVcbuQ9kQQ
+Tips appreciated but never expected:
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V3P324EPK2)
