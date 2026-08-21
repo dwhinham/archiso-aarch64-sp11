@@ -117,3 +117,6 @@ xdg-utils
 xfsprogs
 xl2tpd
 zsh
+
+# Custom Packages go here
+archinstall-aarch64
