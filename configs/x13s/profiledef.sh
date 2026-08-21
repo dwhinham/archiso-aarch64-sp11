@@ -3,7 +3,7 @@
 
 iso_name="archlinux-x13s"
 iso_label="ARCH_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
-iso_publisher="Alex Robinson <alex@ironrobin.net>"
+iso_publisher="Clover <alex@ironrobin.net>"
 iso_application="Arch Linux Ports - aarch64 Live/Rescue Disk for ThinkPad X13s"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)"
 install_dir="arch"
