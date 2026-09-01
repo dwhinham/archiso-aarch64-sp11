@@ -59,8 +59,8 @@ aarch64 specific packages can be found [here](https://codeberg.org/ironrobin/aar
 4. Select the USB to boot (e.g., for Lenovo, press F12 when the logo appears)
 
 ## Installation
-The instructions in the [Installation_guide](https://wiki.archlinux.org/title/Installation_guide) mostly apply
-However there are some limitations with the current archinstall.
+The instructions in the [Installation_guide](https://wiki.archlinux.org/title/Installation_guide) mostly apply,
+However there are some limitations with the current archinstall:
 
  * UKI is not currently supported; make sure it's disabled
  * If you enable encryption, you will need to add some modules to your mkinitcpio.conf file. See https://codeberg.org/ironrobin/archiso-x13s/wiki/Feature-Support#full-disk-encryption
