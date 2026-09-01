@@ -2,50 +2,48 @@
 
 This repository contains a customized archiso config for building images for ARM64 laptops. Pre-built images are available in [Releases](https://codeberg.org/ironrobin/archiso-x13s/releases).
 
-It uses upstream releng plus a thin layer with stubble to support everything that stubble does.
+It builds on Arch Linux's upstream releng profile with a thin compatibility layer powered by stubble, allowing a single image to boot across supported AArch64 laptops.
 Here's a list of currently supported devices (although most are not tested):
 
-- msm8998-lenovo-miix-630-81f1.json
-- sc7180-acer-aspire1.json
-- sc8180x-lenovo-flex-5g-81xe.json
-- sc8180x-lenovo-flex-5g-82ak.json
-- sc8280xp-huawei-gaokun3.json
-- sc8280xp-lenovo-thinkpad-x13s-21bx.json
-- sc8280xp-lenovo-thinkpad-x13s-21by.json
-- sc8280xp-lenovo-thinkpad-x13s-4810.json
-- sc8280xp-microsoft-blackrock.json
-- sc8280xp-microsoft-surface-pro-9-5G.json
-- sdm850-lenovo-yoga-c630.json
-- x1e001de-devkit.json
-- x1e78100-acer-sfa14-11.json
-- x1e78100-lenovo-thinkpad-t14s.json
-- x1e78100-lenovo-thinkpad-t14s-lcd.json
-- x1e78100-lenovo-thinkpad-t14s-oled.json*
-- x1e78100-medion-sprchrgd-14s1-elite.json
-- x1e80100-asus-vivobook-s15.json
-- x1e80100-asus-zenbook-a14.json
-- x1e80100-asus-zenbook-a14-oled.json
-- x1e80100-crd.json
-- x1e80100-dell-inspiron-14-plus-7441.json
-- x1e80100-dell-latitude-7455.json
-- x1e80100-dell-xps13-9345.json
-- x1e80100-hp-elitebook-ultra-g1q.json
-- x1e80100-hp-omnibook-x14.json
-- x1e80100-lenovo-yoga-slim7x.json
-- x1e80100-microsoft-denali.json
-- x1e80100-microsoft-romulus13.json
-- x1e80100-microsoft-romulus15.json
-- x1p42100-acer-swift-go14-01.json
-- x1p42100-asus-vivobook-s15.json
-- x1p42100-asus-zenbook-a14.json
-- x1p42100-hp-omnibook-x14.json
-- x1p42100-lenovo-ideapad-5-2in1.json
-- x1p42100-lenovo-ideapad-slim-5-oled.json
-- x1p42100-lenovo-thinkbook-16.json
-- x1p42100-microsoft-surface-pro-12in.json
-- x1p64100-acer-swift-sf14-11.json
+- Acer Aspire 1
+- Acer Swift 14 AI (SF14-11)
+- Acer Swift Go 14 AI (SFG14-01)
+- ASUS Vivobook S 15
+- ASUS Zenbook A14
+- ASUS Zenbook A14 OLED
+- Dell Inspiron 14 Plus 7441
+- Dell Latitude 7455
+- Dell XPS 13 9345
+- HP EliteBook Ultra G1q
+- HP OmniBook X 14
+- Huawei Gaokun 3
+- Lenovo Flex 5G (81XE)
+- Lenovo Flex 5G (82AK)
+- Lenovo IdeaPad 5 2-in-1
+- Lenovo IdeaPad Slim 5 OLED
+- Lenovo Miix 630 (81F1)
+- Lenovo ThinkBook 16
+- Lenovo ThinkPad T14s
+- Lenovo ThinkPad T14s LCD
+- Lenovo ThinkPad T14s OLED*
+- Lenovo ThinkPad X13s (21BX)
+- Lenovo ThinkPad X13s (21BY)
+- Lenovo ThinkPad X13s (4810)
+- Lenovo Yoga C630
+- Lenovo Yoga Slim 7x
+- Medion SPRCHRGD 14 S1 Elite
+- Microsoft Surface Pro 9 5G
+- Microsoft Surface Pro 12-inch
+- Microsoft Windows Dev Kit 2023 (Project Volterra)
+- Microsoft Denali
+- Microsoft Romulus 13
+- Microsoft Romulus 15
+- Qualcomm X1E001DE Development Kit
+- Qualcomm X1E80100 CRD
 
-*needs special boot parameters to boot.
+*64 GB version needs special boot parameters to boot.
+
+Listed devices have boot support; hardware feature support varies by device and kernel version.
 
 aarch64 specific packages can be found [here](https://codeberg.org/ironrobin/aarch64/releases/tag/packages).
 
