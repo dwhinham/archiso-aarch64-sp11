@@ -1,32 +1,69 @@
-# archiso for Lenovo ThinkPad X13s
+# archiso for AArch64 laptops
 
-This repository contains a customized archiso preset for building images for the ThinkPad X13s ARM laptop. Pre-built images are available in [Releases](https://codeberg.org/ironrobin/archiso-x13s/releases).
+This repository contains a customized archiso config for building images for ARM64 laptops. Pre-built images are available in [Releases](https://codeberg.org/ironrobin/archiso-x13s/releases).
+
+It builds on Arch Linux's upstream releng profile with a thin compatibility layer powered by stubble, allowing a single image to boot across supported AArch64 laptops.
+
+### Supported devices
+
+🟢 Known to boot
+⚪ Untested
+
+- ⚪Acer Aspire 1
+- ⚪Acer Swift 14 AI (SF14-11)
+- ⚪Acer Swift Go 14 AI (SFG14-01)
+- ⚪ASUS Vivobook S 15
+- ⚪ASUS Zenbook A14
+- 🟢ASUS Zenbook A14 OLED
+- ⚪Dell Inspiron 14 Plus 7441
+- ⚪Dell Latitude 7455
+- ⚪Dell XPS 13 9345
+- ⚪HP EliteBook Ultra G1q
+- 🟢HP OmniBook X 14
+- ⚪Huawei Gaokun 3
+- ⚪Lenovo Flex 5G (81XE)
+- ⚪Lenovo Flex 5G (82AK)
+- 🟢Lenovo IdeaPad 5 2-in-1
+- ⚪Lenovo IdeaPad Slim 5 OLED
+- ⚪Lenovo Miix 630 (81F1)
+- ⚪Lenovo ThinkBook 16
+- ⚪Lenovo ThinkPad T14s
+- ⚪Lenovo ThinkPad T14s LCD
+- 🟢Lenovo ThinkPad T14s OLED*
+- 🟢Lenovo ThinkPad X13s (21BX)
+- 🟢Lenovo ThinkPad X13s (21BY)
+- 🟢Lenovo ThinkPad X13s (4810)
+- ⚪Lenovo Yoga C630
+- ⚪Lenovo Yoga Slim 7x
+- ⚪Medion SPRCHRGD 14 S1 Elite
+- ⚪Microsoft Surface Pro 9 5G
+- ⚪Microsoft Surface Pro 12-inch
+- 🟢Microsoft Windows Dev Kit 2023 (Project Volterra)
+- ⚪Microsoft Denali
+- ⚪Microsoft Romulus 13
+- ⚪Microsoft Romulus 15
+- ⚪Qualcomm X1E001DE Development Kit
+- ⚪Qualcomm X1E80100 CRD
+
+*64 GB version needs special boot parameters to boot.
+
+Listed devices have boot support; hardware feature support varies by device and kernel version.
 
 aarch64 specific packages can be found [here](https://codeberg.org/ironrobin/aarch64/releases/tag/packages).
 
 ## Boot instructions
+0. Disable secure boot
 1. Download the latest Pre-built image
-2. Flash to a USB `dd bs=4M if=archlinux-x13s-YYYY.MM.DD-aarch64.iso of=<DEV-TARGET> conv=fsync oflag=direct status=progress`
-3. Reboot the laptop, and press F12 when the Lenovo logo appears
-4. Select the USB to boot
+2. Flash to a USB `dd bs=4M if=archlinux-YYYY.MM.DD-aarch64.iso of=<DEV-TARGET> conv=fsync oflag=direct status=progress`
+3. Reboot the laptop
+4. Select the USB to boot (e.g., for Lenovo, press F12 when the logo appears)
 
 ## Installation
-The instructions in the [Installation_guide](https://wiki.archlinux.org/title/Installation_guide) mostly apply, however there are some things specific to the X13s to be aware of:
+The instructions in the [Installation_guide](https://wiki.archlinux.org/title/Installation_guide) mostly apply,
+However there are some limitations with the current archinstall:
 
- * The internal drive is `/dev/nvme0n1`, and USB storage will be `/dev/sdX`.
- * The X13s ships with an existing EFI system partition on the internal drive that you can use `/dev/nvme0n1p1`.
- * The `ironrobin-x13s` repo will be missing from the target system's `pacman.conf`, make sure to edit it and add this if you want to use X13s packages
-```
-[ironrobin-aarch64]
-Server = https://codeberg.org/ironrobin/aarch64/releases/download/packages
-```
-
-You'll need to trust the public key in order to verify package signature:
-
-```bash
-sudo pacman-key --recv-keys 6ED02751500A833A
-sudo pacman-key --lsign-key 6ED02751500A833A
-```
+ * UKI is not currently supported; make sure it's disabled
+ * If you enable encryption, you will need to add some modules to your mkinitcpio.conf file. See https://codeberg.org/ironrobin/archiso-x13s/wiki/Feature-Support#full-disk-encryption
 
 Tips appreciated but never expected:
 

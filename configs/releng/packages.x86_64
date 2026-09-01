@@ -1,11 +1,14 @@
 alsa-utils
+amd-ucode
 arch-install-scripts
-archports-keyring
+archinstall
+b43-fwcutter
 base
 bcachefs-tools
 bind
 bolt
 brltty
+broadcom-wl
 btrfs-progs
 clonezilla
 cloud-init
@@ -35,6 +38,8 @@ gptfdisk
 grml-zsh-config
 grub
 hdparm
+hyperv
+intel-ucode
 irssi
 iw
 iwd
@@ -48,9 +53,8 @@ libfido2
 libusb-compat
 linux
 linux-atm
-linux-dtbs
 linux-firmware
-linux-firmware-qcom
+linux-firmware-marvell
 livecd-sounds
 lsscsi
 lvm2
@@ -59,6 +63,8 @@ man-db
 man-pages
 mc
 mdadm
+memtest86+
+memtest86+-efi
 mkinitcpio
 mkinitcpio-archiso
 mkinitcpio-nfs-utils
@@ -74,6 +80,7 @@ nmap
 ntfsprogs
 nvme-cli
 open-iscsi
+open-vm-tools
 openconnect
 openpgp-card-tools
 openssh
@@ -86,6 +93,8 @@ ppp
 pptpclient
 pv
 qemu-guest-agent
+refind
+reflector
 rsync
 rxvt-unicode-terminfo
 screen
@@ -93,9 +102,10 @@ sdparm
 sequoia-sq
 sg3_utils
 smartmontools
+sof-firmware
 squashfs-tools
-stubble
 sudo
+syslinux
 systemd-resolvconf
 tcpdump
 terminus-font
@@ -108,6 +118,7 @@ usb_modeswitch
 usbmuxd
 usbutils
 vim
+virtualbox-guest-utils-nox
 vpnc
 wireless-regdb
 wireless_tools
@@ -117,6 +128,3 @@ xdg-utils
 xfsprogs
 xl2tpd
 zsh
-
-# Custom Packages go here
-archinstall-aarch64

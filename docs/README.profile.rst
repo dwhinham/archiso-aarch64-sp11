@@ -10,6 +10,7 @@ An archiso profile consists of several configuration files and a directory for f
    ├── airootfs/
    ├── efiboot/
    ├── syslinux/
+   ├── grub/
    ├── bootstrap_packages.arch
    ├── packages.arch
    ├── pacman.conf
@@ -32,8 +33,9 @@ The image file is constructed from some of the variables in ``profiledef.sh``: `
 * ``iso_application``: A free-form string that states the application (i.e. its use-case) of the resulting image (defaults
   to ``mkarchiso iso``)
 * ``iso_version``: A string that states the version of the resulting image (defaults to ``""``)
-* ``install_dir``: A string (maximum eight characters long, which **must** consist of ``[a-z0-9]``) that states the
-  directory on the resulting image into which all files will be installed (defaults to ``mkarchiso``)
+* ``install_dir``: A string that states the directory into which all files are installed in the ``iso`` and ``netboot``
+  build modes (defaults to ``mkarchiso``). It must consist of **only** ``[a-z0-9]``. For the ``iso`` build mode, it must not
+  exceed 30 characters.
 * ``buildmodes``: An optional list of strings, that state the build modes that the profile uses. Only the following are
   understood:
 
@@ -43,13 +45,17 @@ The image file is constructed from some of the variables in ``profiledef.sh``: `
 * ``bootmodes``: A list of strings, that state the supported boot modes of the resulting image. Only the following are
   understood:
 
-  - ``bios.syslinux.mbr``: Syslinux for x86 BIOS booting from a disk
-  - ``bios.syslinux.eltorito``: Syslinux for x86 BIOS booting from an optical disc
-  - ``uefi-x64.systemd-boot.esp``: systemd-boot for x86_64 UEFI booting from a disk
-  - ``uefi-x64.systemd-boot.eltorito``: systemd-boot for x86_64 UEFI booting from an optical disc
-    Note that BIOS El Torito boot mode must always be listed before UEFI El Torito boot mode.
-* ``arch``: The architecture (e.g. ``x86_64``) to build the image for. This is also used to resolve the name of the packages
-  file (e.g. ``packages.x86_64``)
+  - ``bios.syslinux``: Syslinux for x86 BIOS booting
+  - ``uefi.grub``: GRUB for UEFI booting. For the x86_64 architecture, in addition to x64 UEFI, support for mixed-mode
+    booting (IA32 UEFI) will also be added.
+  - ``uefi.systemd-boot``: systemd-boot for UEFI booting. For the x86_64 architecture, in addition to x64 UEFI, support
+    for mixed-mode booting (IA32 UEFI) will also be added.
+* ``arch``: The architecture (e.g. ``x86_64``) to build the image for (defaults to the value returned by ``uname -m``).
+  This is also used to resolve the name of the packages file (e.g. ``packages.x86_64``)
+* ``packages``: File path to a text file containing a list of packages to install into the environment in ``iso`` and
+  ``netboot`` build modes (defaults to ``packages.${arch}``).
+* ``bootstrap_packages``: File path to a text file containing a list of packages to install into the environment in the
+  ``bootstrap`` build mode (defaults to ``bootstrap_packages.${arch}``).
 * ``pacman_conf``: The ``pacman.conf`` to use to install packages to the work directory when creating the image (defaults to
   the host's ``/etc/pacman.conf``)
 * ``airootfs_image_type``: The image type to create. The following options are understood (defaults to ``squashfs``):
@@ -59,6 +65,8 @@ The image file is constructed from some of the variables in ``profiledef.sh``: `
   - ``erofs``: Create an EROFS image for the airootfs work directory
 * ``airootfs_image_tool_options``: An array of options to pass to the tool to create the airootfs image. ``mksquashfs`` and
   ``mkfs.erofs`` are supported. See ``mksquashfs --help`` or ``mkfs.erofs --help`` for all possible options
+* ``bootstrap_tarball_compression``: An array containing the compression program and arguments passed to it for
+  compressing the bootstrap tarball (defaults to ``cat``). For example: ``bootstrap_tarball_compression=(zstd -c -T0 --long -19)``.
 * ``file_permissions``: An associative array that lists files and/or directories who need specific ownership or
   permissions. The array's keys contain the path and the value is a colon separated list of owner UID, owner GID and
   access mode. E.g. ``file_permissions=(["/etc/shadow"]="0:0:400")``. When directories are listed with a trailing backslash (``/``) **all** files and directories contained within the listed directory will have the same owner UID, owner GID, and access mode applied recursively.
@@ -66,8 +74,10 @@ The image file is constructed from some of the variables in ``profiledef.sh``: `
 bootstrap_packages.arch
 =======================
 
-All packages to be installed into the environment of a bootstrap image have to be listed in an architecture specific
-file (e.g. ``bootstrap_packages.x86_64``), which resides top-level in the profile.
+All packages to be installed into the environment of a bootstrap image have to be listed in a file specified by the
+``bootstrap_packages`` variable. If the variable is not specified, the architecture specific
+``bootstrap_packages.${arch}`` file (e.g. ``bootstrap_packages.x86_64``) or the ``bootstrap_packages`` file which reside
+top-level in the profile will be used instead.
 
 Packages have to be listed one per line. Lines starting with a ``#`` and blank lines are ignored.
 
@@ -76,8 +86,9 @@ This file is required when generating bootstrap images using the ``bootstrap`` b
 packages.arch
 =============
 
-All packages to be installed into the environment of an ISO image have to be listed in an architecture specific file
-(e.g. ``packages.x86_64``), which resides top-level in the profile.
+All packages to be installed into the environment of an ISO image have to be listed in a file specified by the
+``packages`` variable. If the variable is not specified, the architecture specific ``packages.${arch}`` file (e.g.
+``packages.x86_64``) or the ``packages`` file which reside top-level in the profile will be used instead.
 
 Packages have to be listed one per line. Lines starting with a ``#`` and blank lines are ignored.
 
@@ -132,15 +143,23 @@ The following *custom template identifiers* are understood and will be replaced 
 respective variables in ``profiledef.sh``:
 
 * ``%ARCHISO_LABEL%``: Set this using the ``iso_label`` variable in ``profiledef.sh``.
-* ``%INSTALL_DIR%``: Set this using the ``iso_label`` variable in ``profiledef.sh``.
+* ``%INSTALL_DIR%``: Set this using the ``install_dir`` variable in ``profiledef.sh``.
 * ``%ARCH%``: Set this using the ``arch`` variable in ``profiledef.sh``.
+* ``%KERNEL_PARAMS%``: Set this using an architecture-specific variable in ``profiledef.sh``, such as ``kernel_params_aarch64`` or
+  ``kernel_params_x86_64``.
 
+Additionally there are also *custom template identifiers* have harcoded values set by ``mkarchiso`` that cannot be
+overridden:
+
+* ``%ARCHISO_UUID%``: the ISO 9660 modification date in UTC, i.e. its "UUID",
+* ``%ARCHISO_SEARCH_FILENAME%``: file path on ISO 9660 that can be used by GRUB to find the ISO volume
+  (**for GRUB ``.cfg`` files only**).
 
 efiboot
 -------
 
-This directory is mandatory when the ``uefi-x64.systemd-boot.esp`` or ``uefi-x64.systemd-boot.eltorito`` bootmodes are
-selected in ``profiledef.sh``. It contains configuration for `systemd-boot
+This directory is mandatory when the ``uefi.systemd-boot`` bootmode is selected in ``profiledef.sh``.
+It contains configuration for `systemd-boot
 <https://www.freedesktop.org/wiki/Software/systemd/systemd-boot/>`_.
 
   .. note::
@@ -149,15 +168,22 @@ selected in ``profiledef.sh``. It contains configuration for `systemd-boot
     root of an EFI system partition.
 
 The *custom template identifiers* are **only** understood in the boot loader entry `.conf` files (i.e. **not** in
-``loader.conf``).
+``loader.conf``). Boot entries for foreign UEFI architectures will be skipped with the exception of IA32 boot entries
+when building for the x86_64 architecture.
 
 syslinux
 --------
 
-This directory is mandatory when the ``bios.syslinux.mbr`` or the ``bios.syslinux.eltorito`` bootmodes are selected in
-``profiledef.sh``.
+This directory is mandatory when the ``bios.syslinux`` bootmode is selected in ``profiledef.sh``.
 It contains configuration files for `syslinux <https://wiki.syslinux.org/wiki/index.php?title=SYSLINUX>`_ or `isolinux
 <https://wiki.syslinux.org/wiki/index.php?title=ISOLINUX>`_ , or `pxelinux
-<https://wiki.syslinux.org/wiki/index.php?title=PXELINUX>`_ used in the resuling image.
+<https://wiki.syslinux.org/wiki/index.php?title=PXELINUX>`_ used in the resulting image.
 
 The *custom template identifiers* are understood in all `.cfg` files in this directory.
+
+grub
+----
+
+This directory is mandatory when the ``uefi.grub`` bootmode is selected in ``profiledef.sh``.
+It contains configuration files for `GRUB <https://www.gnu.org/software/grub/>`_
+used in the resulting image.
