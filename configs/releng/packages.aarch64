@@ -1,5 +1,6 @@
 alsa-utils
 arch-install-scripts
+archports-keyring
 base
 bcachefs-tools
 bind
@@ -119,4 +120,3 @@ zsh
 
 # Custom Packages go here
 archinstall-aarch64
-archports-keyring
