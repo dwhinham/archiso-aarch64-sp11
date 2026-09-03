@@ -12,7 +12,7 @@ It builds on Arch Linux's upstream releng profile with a thin compatibility laye
 - ⚪Acer Aspire 1
 - ⚪Acer Swift 14 AI (SF14-11)
 - ⚪Acer Swift Go 14 AI (SFG14-01)
-- ⚪ASUS Vivobook S 15
+- 🟢ASUS Vivobook S 15
 - ⚪ASUS Zenbook A14
 - 🟢ASUS Zenbook A14 OLED
 - ⚪Dell Inspiron 14 Plus 7441
