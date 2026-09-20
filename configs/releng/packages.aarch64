@@ -46,9 +46,9 @@ less
 lftp
 libfido2
 libusb-compat
-linux
+linux-sp11
 linux-atm
-linux-dtbs
+linux-sp11-dtbs
 linux-firmware
 linux-firmware-qcom
 livecd-sounds
@@ -120,3 +120,9 @@ zsh
 
 # Custom Packages go here
 archinstall-aarch64
+alsa-ucm-conf-sp11
+dwhinham-keyring
+sp11-ath12k-board
+sp11-audioreach-topology
+sp11-grab-fw
+sp11-mac-fixup

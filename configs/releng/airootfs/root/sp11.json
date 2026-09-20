@@ -1,0 +1,30 @@
+{
+	"kernels": ["linux-sp11"],
+	"locale_config": {
+		"console_font": "ter-132b"
+	},
+	"network_config": {
+		"type": "nm"
+	},
+	"bootloader_config": {
+		"bootloader": "Systemd-boot",
+		"uki": false,
+		"removable": false
+	},
+	"packages": [
+		"alsa-ucm-conf-sp11",
+		"archports-keyring",
+		"dwhinham-keyring",
+		"linux-firmware-qcom",
+		"linux-sp11-dtbs",
+		"linux-sp11-uki",
+		"sp11-ath12k-board",
+		"sp11-audioreach-topology",
+		"sp11-grab-fw",
+		"sp11-mac-fixup"
+	],
+	"custom_commands": [
+		"printf '%s clk_ignore_unused pd_ignore_unused arm64.nopauth systemd.mask=tpm2.target\\n' \"$(sed -n 's/^options //p' /boot/loader/entries/*.conf | head -1)\" > /etc/kernel/cmdline",
+		"linux-sp11-mkuki"
+	]
+}
