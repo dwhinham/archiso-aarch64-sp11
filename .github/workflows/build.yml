@@ -1,0 +1,39 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Reclaim runner disk space
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+            /usr/local/share/boost /usr/local/lib/node_modules /opt/hostedtoolcache
+          sudo apt-get clean
+          df -h /
+
+      # Privileged: mkarchiso uses unshare and loop devices
+      - name: Build the ISO
+        run: |
+          docker run --rm --privileged -v "$PWD:/build" -w /build \
+            ironrobin/archports-aarch64:latest /build/scripts/build-iso.sh
+
+      - name: Report disk use
+        if: always()
+        run: df -h /
+
+      - name: Name the artifact after the ISO
+        id: iso
+        run: echo "name=$(basename out/*.iso .iso)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ steps.iso.outputs.name }}
+          path: out/*.iso
