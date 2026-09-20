@@ -28,7 +28,7 @@ It builds on Arch Linux's upstream releng profile with a thin compatibility laye
 - ⚪Lenovo Miix 630 (81F1)
 - ⚪Lenovo ThinkBook 16
 - ⚪Lenovo ThinkPad T14s
-- ⚪Lenovo ThinkPad T14s LCD
+- 🟢Lenovo ThinkPad T14s LCD
 - 🟢Lenovo ThinkPad T14s OLED*
 - 🟢Lenovo ThinkPad X13s (21BX)
 - 🟢Lenovo ThinkPad X13s (21BY)
