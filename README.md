@@ -22,7 +22,7 @@ This project is not affiliated with other Surface Pro 11 images; please don't us
 | USB-C display output      |       ✅      | Working as of 6.15-rc6 (for DP alt mode).                                                                                                                  |
 | Wi-Fi                     |       ✅      | Working with a kernel hack to disable rfkill[^2]. MAC address will be random unless you use [sp11-mac-fixup] to set it.                                    |
 | Bluetooth                 |       ✅      | Requires some `udev` rules to set up a valid MAC address. [sp11-mac-fixup] takes care of this.                                                             |
-| 5G modem                  |       ❌       | No 5G model available for testing; no volunteers have stepped forward.                                                                                     | 
+| 5G modem                  |       ❌       | No 5G model available for testing; no volunteers have stepped forward.                                                                                     |
 | Audio                     |       ✅      | Speakers working but intentionally limited in volume to avoid damage (as with all X1E machines) because hardware speaker protection is not implemented yet. Microphone is working. |
 | Touchscreen/Pen           |       ✅      | Working thanks to the work of Jingyuan Liang[^8], @scuggo[^5] and @orvitpng[^6]. Requires [iptsd].                                                         |
 | Flex Keyboard             |       ✅      | Only when attached to the Surface Pro; not sure about Bluetooth yet.                                                                                       |
@@ -54,7 +54,8 @@ The instructions in the [Installation guide] mostly apply, but here are some not
 
 - After getting yourself online (you can use `nmtui`), run `sudo sp11-grab-fw` to download and install proprietary firmware that is not redistributed here. This gets your GPU and other hardware working. Reboot after installing.
 - Edit `/etc/sp11-mac.conf` and set your Bluetooth and Wi-Fi MAC addresses. You can [get them from Windows](https://wiki.debian.org/InstallingDebianOn/Thinkpad/X13s#Note_Wi-Fi_and_Bluetooth_mac_addresses).
- 
+- Run `echo "blacklist qcom_battmgr" | sudo tee /etc/modprobe.d/no-qcom-battmgr.conf` to blacklist the Qualcomm battery driver and keep the Surface SAM battery driver. This prevents duplicate batteries being reported. The Surface driver should be better on this machine as it reports cycle count, serial number etc. properly whereas `qcom_battmgr` does not.
+
 ## Kernel
 
 The kernel repository is located at https://github.com/dwhinham/linux-sp11.
