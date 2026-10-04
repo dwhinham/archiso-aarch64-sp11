@@ -441,6 +441,16 @@ _make_customize_airootfs() {
 	    hwids_path="${pacstrap_dir}/usr/lib/systemd/boot/hwids/${uefi_arch[$arch],,}/"
 	    [[ -d "${hwids_path}" ]] || _msg_error "The '${hwids_path}' directory does not exist" 1
 
+	    # TEMP: overlay profile-provided hwids on top of systemd's (e.g. EDID-based Denali OLED/LCD split)
+	    # until they land upstream. Same-named files replace systemd's, new ones are added.
+	    if [[ -d "${profile}/stubble-hwids/${uefi_arch[$arch],,}" ]]; then
+	        _msg_info "Overlaying hwids from '${profile}/stubble-hwids/${uefi_arch[$arch],,}'..."
+	        rm -rf -- "${work_dir}/stubble-hwids"
+	        cp -a -- "${hwids_path}" "${work_dir}/stubble-hwids"
+	        cp -- "${profile}/stubble-hwids/${uefi_arch[$arch],,}/"*.json "${work_dir}/stubble-hwids/"
+	        hwids_path="${work_dir}/stubble-hwids/"
+	    fi
+
 	    for module_dir in "${pacstrap_dir}/usr/lib/modules/"*; do
 	        # Skip directories without a pkgbase
 	        [[ -f "${module_dir}/pkgbase" ]] || continue
