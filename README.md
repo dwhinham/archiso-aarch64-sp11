@@ -55,6 +55,7 @@ The instructions in the [Installation guide] mostly apply, but here are some not
 - After getting yourself online (you can use `nmtui`), run `sudo sp11-grab-fw` to download and install proprietary firmware that is not redistributed here. This gets your GPU and other hardware working. Reboot after installing.
 - Edit `/etc/sp11-mac.conf` and set your Bluetooth and Wi-Fi MAC addresses. You can [get them from Windows](https://wiki.debian.org/InstallingDebianOn/Thinkpad/X13s#Note_Wi-Fi_and_Bluetooth_mac_addresses).
 - Run `echo "blacklist qcom_battmgr" | sudo tee /etc/modprobe.d/no-qcom-battmgr.conf` to blacklist the Qualcomm battery driver and keep the Surface SAM battery driver. This prevents duplicate batteries being reported. The Surface driver should be better on this machine as it reports cycle count, serial number etc. properly whereas `qcom_battmgr` does not.
+- If you've installed a desktop environment and you see `qcom_q6v5_pas 6800000.remoteproc: Handover signaled, but it already happened` spam in `dmesg`, run `sudo systemctl mask iio-sensor-proxy.service`. Further userspace work ([hexagonrpc]) is needed to get ambient light, compass, gyro etc. sensors working.
 
 ## Kernel
 
@@ -114,3 +115,5 @@ Tips appreciated but never expected:
 [sp11-mac-fixup]: https://github.com/dwhinham/archlinux-repo/tree/main/sp11-mac-fixup
 [sp11-audioreach-tppology]: https://github.com/dwhinham/archlinux-repo/tree/main/sp11-audioreach-topology
 [alsa-ucm-conf-sp11]: https://github.com/dwhinham/archlinux-repo/tree/main/alsa-ucm-conf-sp11
+[hexagonrpc]: https://github.com/linux-msm/hexagonrpc
+
