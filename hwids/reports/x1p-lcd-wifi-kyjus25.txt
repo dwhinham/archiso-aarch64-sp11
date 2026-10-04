@@ -1,0 +1,23 @@
+# expect=lcd X1P LCD Wi-Fi, https://github.com/dwhinham/archiso-aarch64-sp11/issues/15#issuecomment-6084106932
+TYPE    INPUT     CHID
+   3 MFPSmp------ aca467c0-5fc2-59ad-8ed5-1b7a0988d11c
+   4 MFPS-------- 95971fb3-d478-591f-9ea3-eb0af0d1dfb5
+   5 MFP--------- c9c14db9-2b61-597a-a4ba-84397fe75f63
+   6 M--Smp------ 7cef06f5-e7e6-56d7-b123-a6d640a5d302
+   7 M--S-------- 48b86a5e-1955-5799-9577-150f9e1a69e4
+   8 M-P-mp------ 06128fee-87dc-50f6-8a3f-97cd9a6d8bf6
+   9 M-P--------- 84b2e1d1-e695-5f41-8c41-cf1f059c616a
+  10 MF--mp------ 16a47337-1f8b-5bd3-b3bd-8e50b31cb1c9
+  11 MF---------- ca2e5189-1d32-509f-88a0-d4ebcc721899
+  12 M---------e- aca387a9-183e-5da9-8f9d-f460c3f50f54
+  13 M---mp------ fdef4ae0-6bfb-5706-8aae-a565639505f5
+  14 M----------- cc0aea32-ad2c-5013-8bed-cede6be8c9f4
+ext0 MFP--------E 26f0f85f-48fb-5d0b-b671-9e70dc8e83d5
+ext1 MF---------E dac465e6-ddc3-5777-a3f7-a0ce47d41e1d
+ext2 M--S-------E 3ae5702b-a1d9-50d5-83d8-4aa34e371123
+
+LEGEND: M → manufacturer (Microsoft Corporation) ┄ F → family (Surface) ┄ P → product-name (Microsoft Surface Pro, 11th Edition)
+        S → product-sku (Surface_Pro_11th_Edition_2076) ┄ m → baseboard-manufacturer (Microsoft Corporation)
+        p → baseboard-product (Microsoft Surface Pro, 11th Edition) ┄ B → bios-vendor (Microsoft Corporation)
+        v → bios-version (175.222.235) ┄ R → bios-major (n/a) ┄ r → bios-minor (n/a)
+        e → enclosure-type (9) ┄ E → edid-panel (LGD077b)

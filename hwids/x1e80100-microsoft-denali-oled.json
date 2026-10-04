@@ -1,0 +1,10 @@
+{
+    "type": "devicetree",
+    "name": "Microsoft Corporation Surface",
+    "compatible": "microsoft,denali-oled",
+    "hwids": [
+        "c9c14db9-2b61-597a-a4ba-84397fe75f63",
+        "06128fee-87dc-50f6-8a3f-97cd9a6d8bf6",
+        "84b2e1d1-e695-5f41-8c41-cf1f059c616a"
+    ]
+}

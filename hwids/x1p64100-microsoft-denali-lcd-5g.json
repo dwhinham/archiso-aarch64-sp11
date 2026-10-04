@@ -1,0 +1,9 @@
+{
+    "type": "devicetree",
+    "name": "Microsoft Corporation Surface (LCD, 5G)",
+    "compatible": "microsoft,denali-lcd",
+    "hwids": [
+        "7a13167b-6ecc-53fc-922e-26f0d30ce386",
+        "49e023e7-848a-569b-91bb-ad21c8d57b1a"
+    ]
+}

@@ -1,0 +1,23 @@
+# expect=oled-5g X1E OLED 5G, https://github.com/dwhinham/archiso-aarch64-sp11/issues/15#issuecomment-6088754789
+TYPE    INPUT     CHID
+   3 MFPSmp------ c4c78d89-ceeb-5711-b5e1-56da6271e946
+   4 MFPS-------- a93df49c-db50-5299-bbfe-bcfd17fbb04b
+   5 MFP--------- b4a7ee53-da84-5be4-82b2-0085557645fd
+   6 M--Smp------ 0cd14d02-0163-5f46-84d3-a6168b6089c6
+   7 M--S-------- 8fbf395f-c95a-5822-9f81-83b22a404ed3
+   8 M-P-mp------ 4cd9b0b4-cce3-58e5-acf4-c28c6584fe6e
+   9 M-P--------- 10b0d934-d716-5716-a5ee-1908347fd053
+  10 MF--mp------ 3da454e8-be5a-5f1a-bab9-b64f7f3d9c57
+  11 MF---------- ca2e5189-1d32-509f-88a0-d4ebcc721899
+  12 M---------e- aca387a9-183e-5da9-8f9d-f460c3f50f54
+  13 M---mp------ 01597b1f-a5b0-5e2c-8659-935928dbc2cc
+  14 M----------- cc0aea32-ad2c-5013-8bed-cede6be8c9f4
+ext0 MFP--------E 964ebd66-d7b1-58f3-a3d0-8a47d0e018ed
+ext1 MF---------E ca2ff828-b404-5253-9e0e-579c93bfb059
+ext2 M--S-------E 3c4b8508-1b74-504f-9534-2ab006bcf9ed
+
+LEGEND: M → manufacturer (Microsoft Corporation) ┄ F → family (Surface) ┄ P → product-name (Microsoft Surface Pro with 5G, 11th Edition)
+        S → product-sku (Surface_Pro_with_5G_11th_Edition_For_Business_2077) ┄ m → baseboard-manufacturer (Microsoft Corporation)
+        p → baseboard-product (Microsoft Surface Pro with 5G, 11th Edition) ┄ B → bios-vendor (Microsoft Corporation)
+        v → bios-version (175.222.235) ┄ R → bios-major (n/a) ┄ r → bios-minor (n/a)
+        e → enclosure-type (9) ┄ E → edid-panel (SDC4195)

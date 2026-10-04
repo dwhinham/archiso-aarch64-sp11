@@ -1,0 +1,10 @@
+{
+    "type": "devicetree",
+    "name": "Microsoft Corporation Surface (5G)",
+    "compatible": "microsoft,denali-oled",
+    "hwids": [
+        "b4a7ee53-da84-5be4-82b2-0085557645fd",
+        "4cd9b0b4-cce3-58e5-acf4-c28c6584fe6e",
+        "10b0d934-d716-5716-a5ee-1908347fd053"
+    ]
+}

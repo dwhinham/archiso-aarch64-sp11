@@ -441,6 +441,18 @@ _make_customize_airootfs() {
 	    hwids_path="${pacstrap_dir}/usr/lib/systemd/boot/hwids/${uefi_arch[$arch],,}/"
 	    [[ -d "${hwids_path}" ]] || _msg_error "The '${hwids_path}' directory does not exist" 1
 
+	    # TEMP: replace systemd's Denali hwids with ours (hwids/) until fixed upstream
+	    local hwids_overlay
+	    hwids_overlay="$(dirname -- "$(realpath -- "${BASH_SOURCE[0]}")")/../hwids"
+	    if [[ -d "${hwids_overlay}" ]]; then
+	        _msg_info "Overlaying hwids from '${hwids_overlay}'..."
+	        rm -rf -- "${work_dir}/stubble-hwids"
+	        cp -a -- "${hwids_path}" "${work_dir}/stubble-hwids"
+	        rm -f -- "${work_dir}/stubble-hwids/"*-microsoft-denali*.json
+	        cp -- "${hwids_overlay}/"*.json "${work_dir}/stubble-hwids/"
+	        hwids_path="${work_dir}/stubble-hwids/"
+	    fi
+
 	    for module_dir in "${pacstrap_dir}/usr/lib/modules/"*; do
 	        # Skip directories without a pkgbase
 	        [[ -f "${module_dir}/pkgbase" ]] || continue
