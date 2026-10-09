@@ -31,12 +31,18 @@ This project is not affiliated with other Surface Pro 11 images; please don't us
 
 ## Boot instructions
 
+> [!WARNING]
+> You **MUST** follow these instructions **PRECISELY**. Trying to boot any other way is unsupported and may not work.
+
 0. Disable secure boot.
 1. Download the latest pre-built image.
-2. Flash to a USB `dd bs=4M if=archlinux-sp11-YYYY.MM.DD-aarch64.iso of=<DEV-TARGET> conv=fsync oflag=direct status=progress`. Don't use Ventoy.
+2. Flash to a USB flash drive: `dd bs=4M if=archlinux-sp11-YYYY.MM.DD-aarch64.iso of=<DEV-TARGET> conv=fsync oflag=direct status=progress`.
+   - If using Windows, use Balena Etcher.
+   - ⚠ **Do not use Ventoy, Rufus or other apps that may interfere with the boot process or modify the image structure.**
 3. Reboot the laptop; hold down Volume Up as the machine reboots to get to the EFI menu.
-5. Tap "Boot configuration" and swipe left on "USB Storage" to boot it immediately.
-6. **WAIT PATIENTLY** approx. 2-3 minutes for boot to complete - **black screen is normal** while things decompress, **JUST LEAVE IT ALONE**.
+4. Tap "Boot configuration" and swipe left on "USB Storage" to boot it immediately.
+   - ⚠ **Do not rely on boot priority (e.g. USB Storage being at the top of the list) alone, you MUST enter the UEFI menu and swipe to boot otherwise you will run into problems.**
+5. **WAIT PATIENTLY** approx. 2-3 minutes for boot to complete - **black screen is normal for a few minutes** while things decompress, **JUST LEAVE IT ALONE**.
 
 ## Installation
 
@@ -77,7 +83,7 @@ Some patches may be going through the upstreaming process already; [check the LK
 - Mic distortion fixed; patch applied upstream.
 - HDMI/DP audio output; patch applied upstream.
 - AudioReach topology [merged upstream](https://github.com/linux-msm/audioreach-topology/pull/76); needs time to trickle down to new `linux-firmware` release; for now we provide [sp11-audioreach-topology].
-- ALSA UCM profiles [in review upstream](https://github.com/alsa-project/alsa-ucm-conf/pull/847); for now we provide [alsa-ucm-conf-sp11].
+- ALSA UCM profiles [merged upstream](https://github.com/alsa-project/alsa-ucm-conf/pull/847); awaiting new release, for now we provide [alsa-ucm-conf-sp11].
 - Iris hardware video decoder/encoder enabled; patch in review upsteam.
 
 ## Why fork [archiso-aarch64](https://codeberg.org/ironrobin/archiso-aarch64)?
@@ -113,7 +119,6 @@ Tips appreciated but never expected:
 [installation guide]: https://wiki.archlinux.org/title/Installation_guide
 [iptsd]: https://github.com/linux-surface/iptsd
 [sp11-mac-fixup]: https://github.com/dwhinham/archlinux-repo/tree/main/sp11-mac-fixup
-[sp11-audioreach-tppology]: https://github.com/dwhinham/archlinux-repo/tree/main/sp11-audioreach-topology
+[sp11-audioreach-topology]: https://github.com/dwhinham/archlinux-repo/tree/main/sp11-audioreach-topology
 [alsa-ucm-conf-sp11]: https://github.com/dwhinham/archlinux-repo/tree/main/alsa-ucm-conf-sp11
 [hexagonrpc]: https://github.com/linux-msm/hexagonrpc
-
