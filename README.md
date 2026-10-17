@@ -16,13 +16,13 @@ This project is not affiliated with other Surface Pro 11 images; please don't us
 |---------------------------|:------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | NVMe                      |       ✅      |                                                                                                                                                            |
 | Graphics                  |       ✅      | Requires firmware to be installed, see below.                                                                                                              |
-| Backlight                 |   Partially  | OLED backlight control working, LCD control needs enabling; no LCD model available for testing; no volunteers have stepped forward.                         |
+| Backlight                 |       ✅      | OLED and LCD backlight controls working.                                                                                                                   |
 | USB3                      |   Partially  | USB-C ports are working, but Surface Dock connector is presumably not.                                                                                      |
 | USB4/Thunderbolt          |       ❌      | No external display output when using [official USB4 dock](https://learn.microsoft.com/en-us/surface/surface-usb4-dock). This is a limitation for all X1 machines; work ongoing upstream[^7]. |
 | USB-C display output      |       ✅      | Working as of 6.15-rc6 (for DP alt mode).                                                                                                                  |
 | Wi-Fi                     |       ✅      | Working with a kernel hack to disable rfkill[^2]. MAC address will be random unless you use [sp11-mac-fixup] to set it.                                    |
 | Bluetooth                 |       ✅      | Requires some `udev` rules to set up a valid MAC address. [sp11-mac-fixup] takes care of this.                                                             |
-| 5G modem                  |       ❌       | No 5G model available for testing; no volunteers have stepped forward.                                                                                     |
+| 5G modem                  |       ❌       | Work in progress by volunteers.                                                                                                                           |
 | Audio                     |       ✅      | Speakers working but intentionally limited in volume to avoid damage (as with all X1E machines) because hardware speaker protection is not implemented yet. Microphone is working. |
 | Touchscreen/Pen           |       ✅      | Working thanks to the work of Jingyuan Liang[^8], @scuggo[^5] and @orvitpng[^6]. Requires [iptsd].                                                         |
 | Flex Keyboard             |       ✅      | Only when attached to the Surface Pro; not sure about Bluetooth yet.                                                                                       |
@@ -49,10 +49,10 @@ This project is not affiliated with other Surface Pro 11 images; please don't us
 The instructions in the [Installation guide] mostly apply, but here are some notes specific to this machine:
 
 - If you want to dual-boot, you need to shrink your Windows partition - it's probably safer to do this from within Windows itself.
-- Launch `archinstall --config /root/sp11.json`. This preset ensures our essential custom package repo and its packages will be included.
+- If you want to use archinstall, launch it with `archinstall --config /root/sp11.json`. This preset ensures our essential custom package repo and its packages will be included. Note that `archinstall` is a convenience tool that provides a guided installation and not a foolproof replacement for a manual installation - you **MUST** pay attention to the following points otherwise things will probably break.
 - Ensure the ESP partition is assigned the mountpoint `/boot`; this will be a small FAT32 partition.
 - Create a root partition and assign it the mountpoint `/`. It may be easiest to go with `ext4` to start with.
-- Customise locale, authentication, etc., but **DO NOT** touch bootloader config, package repos, packages or custom commands. It's recommended to leave network settings alone (it's set to install NetworkManager).
+- Customise locale, authentication, etc., but **DO NOT** touch bootloader config, applications, package repos, packages or custom commands. Don't try to install a desktop environment at this point; leave that for when the system is booting otherwise you will porobably end up with package conflicts. It's recommended to leave network settings alone (it's set to install NetworkManager).
 - The UKI option in archinstall is not currently supported; **leave it disabled**. We use a custom method to work around this; you'll end up with `systemd-boot` as the bootloader and UKI kernels being installed to your EFI partition, one for each Surface variant.
 - If you enable encryption, you will need to add some modules to your mkinitcpio.conf file. See https://codeberg.org/ironrobin/archiso-aarch64/wiki/Feature-Support#full-disk-encryption.
 
