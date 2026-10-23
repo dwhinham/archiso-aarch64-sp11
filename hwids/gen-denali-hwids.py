@@ -8,7 +8,7 @@ from pathlib import Path
 
 # Set once the 5G dtbs exist. Until then they map to the non-5G dtbs, because
 # a compatible with no matching dtb in the UKI means no devicetree at all.
-HAVE_5G_DTBS = False
+HAVE_5G_DTBS = True
 
 M, F = "Microsoft Corporation", "Surface"
 WIFI = "Microsoft Surface Pro, 11th Edition"
